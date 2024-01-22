@@ -18,6 +18,9 @@ def template(contents,content):
                 {contents}
             </ol>
             {content}
+            <ul>
+                <li><a href="/create/">create</a></li>
+            </ul>
         </body>
     </html>
     '''
@@ -46,9 +49,9 @@ def read(id):  # 인자로 id를 받게하면
     return template(getContents(),f'<h2>{title}</h2>{body}') # {} 쓸꺼면 f 잘 붙이자. 한순간의 실수로 멘붕올 수 있다.
 
 
-@app.route('/create')
+@app.route('/create/')
 def create():
-    return 'Create'
+    return template(getContents(), 'create')
 
 
 # port= ???? 할 경우 해당 포트번호로 이동 가능, debug=True는 실시간으로 코드를 고칠 경우 서버를 재실행 안하고 리로드가능하게.

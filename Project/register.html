@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>homepage</title>
+</head>
+<style>
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: blueviolet;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid darkgray;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        margin-top: 20px;
+        background-color: blueviolet;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        border: 1px solid blueviolet;
+    }
+
+    input[type="submit"]:hover {
+        background-color: rgb(74, 18, 128);
+        border: 1px solid rgb(74, 18, 128);
+    }
+
+    /* Gender CSS */
+    .genderdiv{
+    display: flex;
+    }
+    .genderBtn {
+     width: 200px;
+     
+     margin-top: 10px;
+     margin-bottom: 10px;
+    }
+    .genderBtn input[type="radio"] {
+        display: none;
+    }
+    .genderBtn input[type="radio"] +span {
+     display: block;
+     padding: 10px 5px;
+     border: 1px solid rgb(201, 201, 201);
+     background-color: #ffffff;
+     text-align: center;
+     cursor: pointer;
+    }
+    .genderBtn input[type="radio"]:checked + span {
+    background-color: blueviolet;
+    color: white;
+    }
+
+    /* Id CSS */
+    .idlabel{
+    display: flex;
+    }
+    .id{
+    width: 250px;
+    }
+    .checkid{
+    width: 100px;
+    height: 37px;
+    margin-top: 3px;
+    margin-left: 44px;
+    padding: 0;
+    }
+
+</style>
+
+<body>
+    <div class="Container">
+        <div class="regist">
+            <h1> 회원가입 </h1>
+        </div>
+        <div>
+            <div>
+                <form method="POST">
+                    <div>
+                        <label for="name">이름</label>
+                        <input type="text" placeholder="이름" name="name" />
+                    </div>
+
+                    <div class="genderdiv">
+                        <label class="genderBtn">
+                            <input type="radio" name="gender" value="M">
+                            <span>남자</span>
+                        </label>
+                        
+                        <label class="genderBtn">
+                            <input type="radio" name="gender" value="W">
+                            <span>여자</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="birth">주민등록번호</label>
+                        <input type="text" placeholder="'-'를 제외하고 입력해주세요" name="birth" />
+                    </div>
+
+                    <div>
+                        <label for="id" class="idlabel">아이디</label>
+                        <input type="text" placeholder="아이디" name="id" class="id" required />
+                        <input type="button" id="check_button" value="ID 중복 검사" onclick="checkid();" class="checkid" />
+                    </div>
+                    <div>
+                        <label for="password">비밀번호</label>
+                        <input type="password" placeholder="비밀번호" name="password" required />
+                    </div>
+                    <div>
+                        <label for="re_password">비밀번호확인</label>
+                        <input type="password" placeholder="비밀번호확인" name="re_password" required />
+                    </div>
+                    <div>
+                        <label for="email">이메일 주소</label>
+                        <input type="email" placeholder="이메일 주소" name="email" />
+                    </div>
+
+
+                    <div>
+                        <label for="phone">통신사 선택</label>
+                        <input type="tel" placeholder="'-'를 제외하고 입력해주세요" name="phone" />
+                        <!-- 통신사 확인하는 api-->
+                    </div>
+                    <input type="submit" value="회원가입" />
+                </form>
+            </div>
+        </div>
+
+</body>
+
+</html>

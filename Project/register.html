@@ -98,50 +98,50 @@
                 <form method="POST">
                     <div>
                         <label for="name">이름</label>
-                        <input type="text" placeholder="이름" name="name" />
+                        <input type="text" placeholder="이름" id="name" required/>
                     </div>
 
-                    <div class="genderdiv">
-                        <label class="genderBtn">
-                            <input type="radio" name="gender" value="M">
+                    <div class="genderdiv"  aria-required="false">
+                        <label class="genderBtn" >
+                            <input type="radio" id="genderBtn" name="gender" value="M" required>
                             <span>남자</span>
                         </label>
                         
                         <label class="genderBtn">
-                            <input type="radio" name="gender" value="W">
+                            <input type="radio" id="genderBtn" name="gender" value="W">
                             <span>여자</span>
                         </label>
                     </div>
 
                     <div>
                         <label for="birth">주민등록번호</label>
-                        <input type="text" placeholder="'-'를 제외하고 입력해주세요" name="birth" />
+                        <input type="text" placeholder="'-'를 제외하고 입력해주세요" id="birth" required/>
                     </div>
 
                     <div>
                         <label for="id" class="idlabel">아이디</label>
-                        <input type="text" placeholder="아이디" name="id" class="id" required />
+                        <input type="text" placeholder="아이디" id="id" class="id" required />
                         <input type="button" id="check_button" value="ID 중복 검사" onclick="checkid();" class="checkid" />
                     </div>
                     <div>
                         <label for="password">비밀번호</label>
-                        <input type="password" placeholder="비밀번호" name="password" required />
+                        <input type="password" placeholder="비밀번호" id="password" required />
                     </div>
                     <div>
                         <label for="re_password">비밀번호확인</label>
-                        <input type="password" placeholder="비밀번호확인" name="re_password" required />
+                        <input type="password" placeholder="비밀번호확인" id="re_password" required />
                     </div>
                     <div>
                         <label for="email">이메일 주소</label>
-                        <input type="email" placeholder="이메일 주소" name="email" />
+                        <input type="email" placeholder="이메일 주소" id="email" />
                     </div>
 
 
-                    <div>
+                    <!-- <div>
                         <label for="phone">통신사 선택</label>
-                        <input type="tel" placeholder="'-'를 제외하고 입력해주세요" name="phone" />
-                        <!-- 통신사 확인하는 api-->
-                    </div>
+                        <input type="tel" placeholder="'-'를 제외하고 입력해주세요" id="phone" />
+                        통신사 확인하는 api 추가해보는건 추후 업데이트 예정
+                    </div> -->
                     <input type="submit" value="회원가입" />
                 </form>
             </div>

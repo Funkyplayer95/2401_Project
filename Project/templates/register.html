@@ -13,7 +13,7 @@
 <body>
     <h1> 회원가입 </h1>
     <main>
-        <form action="" method="POST" onsubmit="return change_go2()">
+        <form action="" method="POST">
             {% csrf_token %}
             <fieldset class="name_birth">
                 <legend class="skip">정보</legend>
@@ -96,7 +96,6 @@
                                 <option value="nate.com">nate.com</option>
                                 <option value="kakao.com">kakao.com</option>
                             </select>
-                            <input type="hidden" id="domain-hidden" name="domain-hidden" value="">
                         </div>
                     </li>
                     <li>

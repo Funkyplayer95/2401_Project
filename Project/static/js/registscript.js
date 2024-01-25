@@ -26,14 +26,6 @@ domainListEl.addEventListener('change', (event) => {
   }
 })
 
-function change_go2(form) {
-var emailValue1 = document.getElementById('emailId').value;
-var emailValue2 = document.getElementById('domain-txt').value;
-var sendEmailValue = emailValue1 + "@" + emailValue2;
-
-document.getElementById('domain-hidden').value = sendEmailValue;
-return true;
-}
 
 window.onload = function () {
     const form = document.querySelector('form');
@@ -48,7 +40,7 @@ window.onload = function () {
     const jumin1Input = document.querySelector('input[name=jumin1]');
     const jumin2Input = document.querySelector('input[name=jumin2]');
     const jumin_error = document.querySelector('.jumin_error')
-    console.log(input_id, input_pw, input_re_pw, id_error, pw_error, re_pw_error,jumin1Input,jumin2Input,jumin_error);
+    // console.log(input_id, input_pw, input_re_pw, id_error, pw_error, re_pw_error,jumin1Input,jumin2Input,jumin_error);
 
 
 

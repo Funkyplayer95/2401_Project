@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import pymysql
+import pymysql #이건 왜 노란색으로 뜨는지 이유를 모르겠음.
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jc2v==83snwas^2ajr=#5$qxa#qs0588gh^=0f$t+5#07i(ju8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*'] #특정호스트를 받아야한다하는데 테스트라 모든 호스트를 받도록만들어야한다함.
 
 
 # Application definition
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'homepage'
+    'corsheaders', #CORS 이유로 생성해야한다고 함.
+    'homepage' #내가 쓰는 app폴더 이름을 입력해서 읽게 진행
 ]
 
 MIDDLEWARE = [
@@ -80,14 +80,14 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',  # 기존 sqlite3로 진행하던 부분은 주석처리
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : 'SoloProject',
-        'USER' : 'root',
-        'PASSWORD' : '1234',
-        'HOST' : "",
-        'PORT' : '3306'
+        'ENGINE' : 'django.db.backends.mysql', # 신규 mysql db연동을위해 진행
+        'NAME' : 'SoloProject', # 데이터베이스 이름
+        'USER' : 'root', # USER 이름
+        'PASSWORD' : '1234', # 비밀번호
+        'HOST' : "", # 공백일 시 localhost로 진행한다고 함.
+        'PORT' : '3306' # MYSQL 기존 포트인 3306으로 (자세한건 모르겠다)
     }
 }
 
@@ -114,13 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'ko-kr' # 한국어로 설정
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'Asia/Seoul' #한국 시간으로 설정
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = True # 추가한 코드. 자세히는 모름.
 
 USE_TZ = True
 
@@ -128,12 +128,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # css,js,image등 여러 파일들을 모아두는 폴더
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
                     ]
 
-##CORS
+##CORS 때문에 설정해야한다는 코드
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ALLOW_CREDENTIALS = True
 

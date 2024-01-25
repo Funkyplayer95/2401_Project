@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.hashers import make_password
-from .models import Userinfo
+from django.shortcuts import render # 페이지 호출할 때 쓰는 import
+from django.http import HttpResponse # Http자체로 불러갈 수 있는 import
+from django.contrib.auth.hashers import make_password # password 암호화 하기위해 django에서 주는 import
+from .models import Userinfo # 내가 가져올 class import해주기
 # Create your views here.
-# 여기에 함수 및 다양한 
 
 def index(request):
     users = Userinfo.objects.all()
@@ -11,7 +10,7 @@ def index(request):
 
 def singup(request):
     if request.method == "POST":
-        id = request.POST.get('id',None)
+        id = request.POST.get('id',None) # request.POST.get('name값', None일 수 있다.)
         password = request.POST.get('password',None)
         name = request.POST.get('name',None)
         gender = request.POST.get('gender',None)
@@ -31,7 +30,7 @@ def singup(request):
                         user_address_num=address_num, user_address_doro=address_doro,
                         user_address_jibun=address_jibun, user_address_detail=address_detail,
                         user_img=img)
-        user.save()
+        user.save() #save()가 데이터를 DB에 집어넣는 코드인듯하다. 
         return render(request, 'register.html')
     else:
         return render(request, 'register.html')

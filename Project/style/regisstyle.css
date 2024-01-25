@@ -1,0 +1,192 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
+    color: blueviolet;
+    padding-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: blueviolet;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+
+li {
+    padding-bottom: 5px;
+    padding-top: 5px
+}
+
+.name_birth {
+    border-bottom: 5px double blueviolet;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* address css */
+.address > input {
+margin-bottom: 10px;
+}
+.address_num{
+    width: 200px;
+}
+.address_Btn{
+    width: 100px;
+    height: 30px;
+    margin-left: 50px;
+    padding: 0;
+    background: blueviolet;
+    color: white;
+    box-shadow: 0 3px 3px rgb(54, 18, 87);
+    border: 0;
+    cursor: pointer;
+}
+.address_Btn:active{
+    position: relative;
+    top:3px;
+    box-shadow: 0 0 1px rgb(54, 18, 87);
+
+}
+
+
+/* Gender CSS */
+.genderdiv {
+    display: flex;
+}
+
+.genderBtn {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.genderBtn input[type="radio"] {
+    display: none;
+}
+
+.genderBtn input[type="radio"]+span {
+    display: block;
+    padding: 10px 5px;
+    border: 1px solid rgb(201, 201, 201);
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.genderBtn input[type="radio"]:checked+span {
+    background-color: blueviolet;
+    color: white;
+}
+
+/* Id CSS */
+
+.id {
+    width: 250px;
+}
+
+.checkid {
+    width: 100px;
+    height: 30px;
+    margin-top: 3px;
+    margin-left: 44px;
+    padding: 0;
+    cursor: pointer;
+    background: blueviolet;
+    color: white;
+    box-shadow: 0 3px 3px rgb(54, 18, 87);
+    border: 0;
+}
+
+.checkid:active{
+    position: relative;
+    top:3px;
+    box-shadow: 0 0 1px rgb(54, 18, 87);
+
+}
+
+/* birth css */
+.jumin1 {
+    width: 48.5%;
+}
+
+.jumin2 {
+    width: 10%
+}
+
+.jumin2span{
+font-size: 30px;
+}
+
+/* email css */
+.emailbox{
+display: flex;
+justify-content: center;
+text-align: center;
+align-items: center;
+}
+.emailId{
+width: 35%;}
+
+#domain-txt{width: 30%;}
+select.box {
+    margin-left: 5px;
+    width: 30%;
+    height: 37px;
+    box-sizing: border-box;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+  }
+  
+  option {
+    font-size: 16px;
+  }
+  
+  .box #domain-list option {
+    font-size: 14px;
+    background-color: #ffffff;
+  }
+
+
+/* error css */
+.error {
+    color: red;
+    padding: 10px;
+    display: none;
+}
+
+
+/* submit css */
+input[type="submit"] {
+    margin-top: 20px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    cursor: pointer;
+    background: blueviolet;
+    color: white;
+    box-shadow: 0 3px 3px rgb(54, 18, 87);
+    border: 0;
+}
+
+input[type='submit']:active{
+    position: relative;
+    top:3px;
+    box-shadow: 0 0 1px rgb(54, 18, 87);
+}

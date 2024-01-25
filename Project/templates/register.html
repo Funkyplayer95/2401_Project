@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/regisstyle.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/regisstyle.css">
 </head>
 
 <body>
     <h1> 회원가입 </h1>
     <main>
-        <form action="#" method="POST" onsubmit="return change_go2()">
+        <form action="" method="POST" onsubmit="return change_go2()">
+            {% csrf_token %}
             <fieldset class="name_birth">
                 <legend class="skip">정보</legend>
                 <ul>
@@ -44,12 +45,15 @@
                     <li class="error jumin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
                     <li class="address">
                         <label for="address">주소</label> <!-- 여기에다가 주소api넣어보기-->
-                        <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num">
-                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_Btn" id="address_Btn">
-                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소" vlaue="" readonly> <!--readonly를 사용하여 수정 불가하게끔-->
-                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="" readonly> <!--readonly를 사용하여 수정 불가하게끔-->
+                        <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num" name="address_num">
+                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_Btn"
+                            id="address_Btn" name="address_Btn">
+                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소" vlaue="" name="address_doro" readonly>
+                        <!--readonly를 사용하여 수정 불가하게끔-->
+                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="" name="address_jibun" readonly>
+                        <!--readonly를 사용하여 수정 불가하게끔-->
                         <span id="guide" style="color:#999;display:none; margin-bottom: 10px;"></span>
-                        <input type="text" id="sample4_detailAddress" placeholder="상세주소" value="" required />
+                        <input type="text" id="sample4_detailAddress" placeholder="상세주소" value="" name="address_detail" required />
                         <input type="hidden" id="sample4_extraAddress" placeholder="참고항목"> <!--이부분은 hidden으로 숨긴다-->
                     </li>
                 </ul>
@@ -80,7 +84,8 @@
                     <li>
                         <label for="email">이메일(선택)</label>
                         <div class="emailbox">
-                            <input type="text" name="emailId" id="emailId" class="emailId" onchange="change_go2(this.form)" value="">
+                            <input type="text" name="emailId" id="emailId" class="emailId"
+                                onchange="change_go2(this.form)" value="">
                             @
                             <input class="box" id="domain-txt" name="domain-txt" type="text" value="">
                             <select class="box" id="domain-list">
@@ -93,7 +98,10 @@
                             </select>
                             <input type="hidden" id="domain-hidden" name="domain-hidden" value="">
                         </div>
-
+                    </li>
+                    <li>
+                        <label for="fileupload">대표 이미지</label>
+                        <input type="file" name="imgfile" id="imgfile" class="imgfile">
                     </li>
                 </ul>
             </fieldset>
@@ -105,6 +113,7 @@
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+        //kakao 주소 API
         //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
         function sample4_execDaumPostcode() {
             new daum.Postcode({
@@ -158,23 +167,11 @@
                         guideTextBox.style.display = 'none';
                     }
                 }
-                , onclose: function (state) { // ',' 를 넣어야한다. 안그러면 동작을 하지 않는다.
-                    //state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
-                    // if (state === 'FORCE_CLOSE') {
-                    //     alert('경고창이 떠야한다11111')
-                    //     //사용자가 브라우저 닫기 버튼을 통해 팝업창을 닫았을 경우, 실행될 코드를 작성하는 부분입니다.
 
-                    // }
-                    if (state === 'COMPLETE_CLOSE') {
-                        //사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우, 실행될 코드를 작성하는 부분입니다.
-                        //oncomplete 콜백 함수가 실행 완료된 후에 실행됩니다.
-                    }
-                }
             }).open();
-        // 주소 검색이 완료되면 팝업을 닫는방법은..?
-    }
+        }
     </script>
-    <script src="script/registscript.js"></script>
+    <script src="../static/js/registscript.js"></script>
 </body>
 
 </html>

@@ -27,9 +27,10 @@ domainListEl.addEventListener('change', (event) => {
 })
 
 
+
 window.onload = function () {
     const form = document.querySelector('form');
-    const input_id = document.querySelector('input[name=id]');
+    const input_id = document.querySelector('input[name=userid]');
     const input_pw = document.querySelector('input[name=password]');
     const input_re_pw = document.querySelector('input[name=re_password]');
 
@@ -55,6 +56,8 @@ window.onload = function () {
         } else {
             id_error.style.display = 'none';
         }
+        
+    
 
         // 비밀번호 검사 코드
         const passwordValue = input_pw.value;
@@ -106,8 +109,4 @@ window.onload = function () {
                 jumin_error.style.display = 'none'
             }
         }
-
-
-    });
-}
-
+    })};

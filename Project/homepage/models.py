@@ -1,25 +1,40 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
-class Userinfo(models.Model): #데이터베이스에 있는 값들 복붙하여 설정 // inspectdb로 연결된 db불러올 수 있어서 진행
+class Userinfo(models.Model):
     user_id = models.CharField(max_length=100)
     user_password = models.CharField(max_length=100)
     user_name = models.CharField(max_length=100)
     user_gender = models.CharField(max_length=1)
-    user_rrn1 = models.IntegerField() # Integer는 따로 값 설정 필요 X
-    user_rrn2 = models.IntegerField() # Integer는 따로 값 설정 필요 X
+    user_rrn1 = models.IntegerField()
+    user_rrn2 = models.IntegerField()
     user_email = models.CharField(max_length=100, blank=True, null=True)
-    user_address_num = models.IntegerField(blank=True, null=True) # null값이어도 괜찮다는 설정
+    user_address_num = models.IntegerField(blank=True, null=True)
     user_address_doro = models.CharField(max_length=100, blank=True, null=True)
     user_address_jibun = models.CharField(max_length=100, blank=True, null=True)
     user_address_detail = models.CharField(max_length=100, blank=True, null=True)
-    user_img = models.TextField(blank=True, null=True)
-    user_code = models.AutoField(primary_key=True) #기본키 지정안할경우 db연동이 어려워 db설정
+    # user_image_id = models.ForeignKey('Userimage', on_delete=models.CASCADE, related_name='images', blank=True, null=True) # 외래키로
+    user_code = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
         db_table = 'userinfo'
+
+
+class Userimage(models.Model):
+    image_id = models.AutoField(primary_key=True)  # 기본키
+    image_name = models.CharField(max_length=255)
+    image_type = models.CharField(max_length=100)
+    image_data = models.BinaryField()
+    upload_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'userimage'
+
+# class Userimg(models.Model):
+    
 
     # def __str__(self):
     #     return self.user_id

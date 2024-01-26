@@ -8,6 +8,7 @@
     <title>회원가입</title>
     <link rel="stylesheet" href="../static/css/reset.css">
     <link rel="stylesheet" href="../static/css/regisstyle.css">
+
 </head>
 
 <body>
@@ -63,8 +64,9 @@
                 <ul>
                     <li>
                         <label for="id" class="idlabel">아이디 (6~10자리)</label>
-                        <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=id required />
-                        <input type="button" id="check_button" value="ID 중복 검사" class="checkid" />
+                        <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=userid required />
+                        <input type="button" id="check_button" value="ID 중복 검사" class="checkid" onclick="checkDuplicateId()" />
+                        <p id="idCheckResult" style="color: red;"></p>
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error id_error">6~10 자리 사이로 입력해야합니다.</li>
@@ -98,19 +100,19 @@
                             </select>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <label for="fileupload">대표 이미지</label>
                         <input type="file" name="imgfile" id="imgfile" class="imgfile">
-                    </li>
+                    </li> -->
                 </ul>
             </fieldset>
 
-            <input type="submit" name="finsh" value="회원가입" />
+            <input type="submit" name="finsh" value="회원가입" onclick="checkForm()"/>
         </form>
 
     </main>
-
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="../static/js/registscript.js"></script>
     <script>
         //kakao 주소 API
         //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -169,8 +171,73 @@
 
             }).open();
         }
+        // 중복체크 버튼용 script 함수
+        function checkDuplicateId() { 
+            const idInput = document.getElementById('id');
+            const idValue = idInput.value;
+
+            if (idValue === '') {
+                alert('ID를 입력해주세요.');
+                return;
+            }
+            // 서버로 중복 확인 요청
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/check_duplicate_id/', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById('idCheckResult').innerText = response.message;
+                }
+            };
+            const data = `userid=${idValue}`;
+            xhr.send(data);
+        }
+
+        // 회원가입 제출용 script 함수
+        function checkForm() {
+            const idInput = document.getElementById('id');
+            const idValue = idInput.value.trim();
+
+            if (idValue === '') {
+                alert('ID를 입력해주세요.');
+                return false; // 폼 제출을 중지합니다.
+            }
+
+            // 서버로 중복 확인 요청
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/check_duplicate_id/', false); // 동기적 요청으로 변경
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let isDuplicate = false; // 중복여부 저장하는 변수 추가
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById('idCheckResult').innerText = response.message;
+
+                    // 중복이면 폼 제출을 중지합니다.
+                    if (response.status === 'error') {
+                        isDuplicate = true;
+                        alert(response.message);
+                        event.preventDefault();
+                        return;
+                    }
+                }
+            };
+
+            const data = `userid=${idValue}`;
+            xhr.send(data);
+
+            // 중복일시 폼 중지
+            if (isDuplicate) {
+                event.preventDefault();
+                return false;
+            }
+
+            return true; // 폼 제출을 진행합니다.
+        }
+    
     </script>
-    <script src="../static/js/registscript.js"></script>
+    
 </body>
 
 </html>

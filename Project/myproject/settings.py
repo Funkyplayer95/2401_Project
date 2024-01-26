@@ -87,7 +87,11 @@ DATABASES = {
         'USER' : 'root', # USER 이름
         'PASSWORD' : '1234', # 비밀번호
         'HOST' : "", # 공백일 시 localhost로 진행한다고 함.
-        'PORT' : '3306' # MYSQL 기존 포트인 3306으로 (자세한건 모르겠다)
+        'PORT' : '3306', # MYSQL 기존 포트인 3306으로 (자세한건 모르겠다)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        'CLIENT': 'mysql',
     }
 }
 

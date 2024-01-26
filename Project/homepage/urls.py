@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 from homepage import views
 urlpatterns = [
-    path('', views.index),
-    path('signup/', views.singup),
-
+    # path('', views.index),
+    path('', views.singup),
+    path('check_duplicate_id/', views.check_duplicate_id)
 ]

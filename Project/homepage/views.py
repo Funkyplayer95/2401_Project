@@ -27,14 +27,14 @@ def singup(request):
         address_jibun = request.POST.get('address_jibun',None)
         address_detail = request.POST.get('address_detail',None)
         
-        duplicate_check_result = check_duplicate_id(request) # 이 부분을 수정했습니다.
+        duplicate_check_result = check_duplicate_id(request)
 
         if 'status' in duplicate_check_result and duplicate_check_result['status'] == 'error':
             # 중복된 ID 처리 (예: 경고 메시지 출력)
             return render(request, 'register.html', {'error_message': duplicate_check_result['message']})
         else:
             # 중복이 아닌 경우 계속 진행
-            userid = request.POST.get('userid',None) # 이 부분을 이동했습니다.
+            userid = request.POST.get('userid',None)
             user = Userinfo(user_id=userid,
                             user_password=make_password(password),
                             user_name=name,

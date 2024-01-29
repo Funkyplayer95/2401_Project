@@ -33,6 +33,17 @@ class Userimage(models.Model):
         managed = False
         db_table = 'userimage'
 
+class Cityweather(models.Model):
+    city_name = models.CharField(max_length=100, primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cityweather'
+    def _str_(self): #show the actual city name on the dashboard
+        return self.name
+
+    
+
 # class Userimg(models.Model):
     
 

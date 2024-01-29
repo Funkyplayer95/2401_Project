@@ -31,6 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*'] #특정호스트를 받아야한다하는데 테스트라 모든 호스트를 받도록만들어야한다함.
 
 
+
 # Application definition
 
 INSTALLED_APPS = [

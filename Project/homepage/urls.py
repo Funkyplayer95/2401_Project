@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.urls import path, include
 from homepage import views
+from myproject import settings
+from django.contrib.auth import views as auth_views
 urlpatterns = [
-    # path('', views.index),
-    path('', views.weatherApi),
+    # path('weatherApi/', views.weatherApi),
     path('check_duplicate_id/', views.check_duplicate_id),
-    path('regist/', views.singup)
+    path('regist/', views.singup),
+    path('accounts/', include('allauth.urls')),
+    path('', include('social_django.urls', namespace='social')),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('', views.main),
 ]

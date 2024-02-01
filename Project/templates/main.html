@@ -37,9 +37,11 @@
 
                 <div class="col-4 pt-1">
                     {% if user.is_authenticated %}
-                    <a class="text-muted" href="mypage/">My page</a>
+                    <a class="btn btn-primary" style="background: blueviolet;
+                    border: none;" href="mypage/">My Page</a>
                     {% else %}
-                    <a class="text-muted" href="regist/">Sign Up</a>
+                    <a class="btn btn-primary" style="background: blueviolet;
+                    border: none;" href="regist/">Sign Up</a>
                     {% endif %}
                 </div>
 
@@ -52,21 +54,22 @@
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ request.path }}">
-                        <button type="submit">Logout</button>
+                        <button type="submit" class="btn btn-primary" style="background: blueviolet;
+                        border: none;">Logout</button>
                     </form>
                     {% else %}
-                    
+
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop" id="myModal" style="background: blueviolet;
                         border: none;">
                         <!-- data-bs-target 은 modal을 불러오는 코드이다. -->
-                        Sign In
+                        Login
                     </button>
-                    
+
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content" style="width: 400px; height: 370px;">
                                 <div class="modal-header" style="background: blueviolet; color: white;">
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -78,23 +81,31 @@
                                         <ul>
                                             <li>
                                                 <label for="loginid" style="color: blueviolet;">아이디</label><br>
-                                                <input type="text" name="loginid" id="loginid">
-                                            </li>
-                                            <li>
-                                                <label for="loginpw" style="color: blueviolet;">비밀번호</label><br>
-                                                <input type="password" name="loginpw" id="loginpw">
+                                                <input type="text" name="loginid" id="loginid" style="width: 180px;">
                                             </li>
                                             <li style="margin-top: 10px;">
+                                                <label for="loginpw" style="color: blueviolet;">비밀번호</label><br>
+                                                <input type="password" name="loginpw" id="loginpw"
+                                                    style="width: 180px;">
+                                            </li>
+
+                                            <li style="margin-top: 30px;">
+
                                                 <a href="{% url 'social:begin' 'google-oauth2' %}" target="_self">
-                                                    <img src="../static/images/googleLogin.png" alt="구글로그인" style="width: 200px; height: 50px;">
+                                                    <img src="../static/images/googleLogin2.png" alt="구글로그인"
+                                                        style="width: 180px; height: 40px;">
                                                 </a>
                                             </li>
+
                                         </ul>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                                        <a class="btn btn-secondary" style="
+                                            border: none; float: right;" href="regist/">회원가입</a>
+                                        <input type="submit" class="btn btn-primary"
+                                            style="background: blueviolet; border:none;" value="로그인">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">닫기</button>
-                                        <input type="submit" class="btn btn-primary" value="로그인"></button>
                                     </div>
                             </div>
                         </div>
@@ -119,32 +130,86 @@
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe74f15427eea1d6a546b4bb2f811f5e"></script>
         <script>
-            var container = document.getElementById('map');
-            var options = {
-                center: new kakao.maps.LatLng(37.565449, 126.977863),
-                level: 3
-            };
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                    center: new kakao.maps.LatLng(37.56424, 126.97794), // 지도의 중심좌표
+                    level: 4, // 지도의 확대 레벨
+                    mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+                };
 
-            var map = new kakao.maps.Map(container, options);
+            // 지도를 생성한다 
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            // 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소를 막는다
+            map.setZoomable(false);
+
+            // 지도 타입 변경 컨트롤을 생성한다
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+
+            // 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            // 지도에 확대 축소 컨트롤을 생성한다
+            var zoomControl = new kakao.maps.ZoomControl();
+
+            // 지도의 우측에 확대 축소 컨트롤을 추가한다
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
         </script>
         <br>
+
+        <!-- 1번째 div -->
         <div class="row mb-2" style="padding: 12px;">
-            <div class="col-md-6">
+            <div class="col-md-6" style="display: flex;">
                 <div
                     class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <strong class="d-inline-block mb-2 text-primary">Summer</strong>
                         <h3 class="mb-0">Featured post</h3>
                         <div class="mb-1 text-muted">Nov 12</div>
                         <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
                             lead-in to additional content.</p>
+                        <!-- <a href="" class="stretched-link">Continue reading</a> -->
+                    </div>
+                    <div class="col-auto d-none d-lg-block position-relative">
+                        <img src="../static/images/맨투맨.jpg" alt="이미지" style="width:200px; height:250px;
+                        background:#55595c; color:#eceeef;" text="Thumbnail">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success">Spring / Autumn</strong>
+                        <h3 class="mb-0">Post title</h3>
+                        <div class="mb-1 text-muted">Nov 11</div>
+                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                            additional content.</p>
                         <a href="" class="stretched-link">Continue reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2번째 div -->
+        <div class="row mb-2" style="padding: 12px;">
+            <div class="col-md-6" style="display: flex;">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">Spring / Autumn</strong>
+                        <h3 class="mb-0">Featured post</h3>
+                        <div class="mb-1 text-muted">Nov 12</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
+                            lead-in to additional content.</p>
+                        <!-- <a href="" class="stretched-link">Continue reading</a> -->
+                    </div>
+                    <div class="col-auto d-none d-lg-block position-relative">
                         <img src="../static/images/맨투맨.jpg" alt="이미지" style="width:200px; height:250px;
                         background:#55595c; color:#eceeef;" text="Thumbnail">
-                        {% include width="200" height="250" background="#55595c" color="#eceeef"
-                        text="Thumbnail" %}
                     </div>
                 </div>
             </div>
@@ -160,8 +225,42 @@
                         <a href="" class="stretched-link">Continue reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
-                        {% include icons/placeholder.svg width="200" height="250" background="#55595c" color="#eceeef"
-                        text="Thumbnail" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3번째 div -->
+        <div class="row mb-2" style="padding: 12px;">
+            <div class="col-md-6" style="display: flex;">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">Winter</strong>
+                        <h3 class="mb-0">Featured post</h3>
+                        <div class="mb-1 text-muted">Nov 12</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
+                            lead-in to additional content.</p>
+                        <!-- <a href="" class="stretched-link">Continue reading</a> -->
+                    </div>
+                    <div class="col-auto d-none d-lg-block position-relative">
+                        <img src="../static/images/맨투맨.jpg" alt="이미지" style="width:200px; height:250px;
+                        background:#55595c; color:#eceeef;" text="Thumbnail">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success">Design</strong>
+                        <h3 class="mb-0">Post title</h3>
+                        <div class="mb-1 text-muted">Nov 11</div>
+                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                            additional content.</p>
+                        <a href="" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
                     </div>
                 </div>
             </div>
@@ -219,12 +318,6 @@
                     </ol>
                     <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
                 </div><!-- /.blog-post -->
-
-                <nav class="blog-pagination">
-                    <a class="btn btn-outline-primary" href="#">Older</a>
-                    <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-                </nav>
-
             </div><!-- /.blog-main -->
 
             <aside class="col-md-4 blog-sidebar">

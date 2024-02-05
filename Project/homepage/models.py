@@ -14,7 +14,6 @@ class Userinfo(models.Model):
     user_address_doro = models.CharField(max_length=100, blank=True, null=True)
     user_address_jibun = models.CharField(max_length=100, blank=True, null=True)
     user_address_detail = models.CharField(max_length=100, blank=True, null=True)
-    # user_image_id = models.ForeignKey('Userimage', on_delete=models.CASCADE, related_name='images', blank=True, null=True) # 외래키로
     user_code = models.AutoField(primary_key=True)
 
     class Meta:

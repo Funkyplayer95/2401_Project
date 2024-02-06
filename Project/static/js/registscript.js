@@ -8,22 +8,30 @@ function inputNum2(id) {
     var element = document.getElementById('jumin2');
     element.value = element.value.replace(/[^0-9]/gi, "");
 }
+// 핸드폰 번호 오로지 숫자만 입력하도록
+function inputNum1(id) {
+    var element = document.getElementById('phone');
+    element.value = element.value.replace(/[^0-9]/gi, "");
+}
 
 // 이메일 부분 참고 코드
-const domainListEl = document.querySelector('#domain-list')
-const domainInputEl = document.querySelector('#domain-txt')
+const domainListEl = document.getElementById('domain-list')
+const domainInputEl = document.getElementById('domain-txt')
 // select 옵션 변경 시
 domainListEl.addEventListener('change', (event) => {
-  // option에 있는 도메인 선택 시
-  if(event.target.value !== "type") {
-    // 선택한 도메인을 input에 입력하고 disabled
-    domainInputEl.value = event.target.value
-    domainInputEl.disabled = true
-  } else { // 직접 입력 시
-    // input 내용 초기화 & 입력 가능하도록 변경
-    domainInputEl.value = ""
-    domainInputEl.disabled = false
-  }
+    // option에 있는 도메인 선택 시
+    if (event.target.value !== "type") {
+        // 선택한 도메인을 input에 입력하고 disabled
+        domainInputEl.value = event.target.value
+        domainInputEl.disabled = false
+        $("#domain-txt").prop("readonly", true)
+        alert(domainInputEl.value)
+
+    } else { // 직접 입력 시
+        // input 내용 초기화 & 입력 가능하도록 변경
+        domainInputEl.value = ""
+        domainInputEl.disabled = false //disabled은 input객체 비활성화 처리가능. form전송시 전송 x
+    }
 })
 
 
@@ -56,8 +64,8 @@ window.onload = function () {
         } else {
             id_error.style.display = 'none';
         }
-        
-    
+
+
 
         // 비밀번호 검사 코드
         const passwordValue = input_pw.value;
@@ -87,8 +95,8 @@ window.onload = function () {
         const jumin1Value = parseInt(jumin1Input.value);
         const jumin2Value = parseInt(jumin2Input.value);
         const radioValue = document.querySelector('input[name="gender"]:checked').value;
-        if (jumin1Value >= 400000){
-            if ((jumin2Value !== 1 && radioValue === 'M') || (jumin2Value !== 2 && radioValue === 'W')){
+        if (jumin1Value >= 400000) {
+            if ((jumin2Value !== 1 && radioValue === 'M') || (jumin2Value !== 2 && radioValue === 'W')) {
                 jumin_error.style.display = 'block'
                 alert('주민등록번호와 성별이 일치하지 않습니다.')
                 event.preventDefault();
@@ -98,15 +106,16 @@ window.onload = function () {
                 jumin_error.style.display = 'none'
             }
         }
-        else if (jumin1Value < 400000){
-            if ((jumin2Value !== 3 && radioValue === 'M') || (jumin2Value !== 4 && radioValue === 'W')){
+        else if (jumin1Value < 400000) {
+            if ((jumin2Value !== 3 && radioValue === 'M') || (jumin2Value !== 4 && radioValue === 'W')) {
                 jumin_error.style.display = 'block'
                 alert('주민등록번호와 성별이 일치하지 않습니다.')
                 event.preventDefault();
                 return;
-                }
+            }
             else {
                 jumin_error.style.display = 'none'
             }
         }
-    })};
+    })
+};

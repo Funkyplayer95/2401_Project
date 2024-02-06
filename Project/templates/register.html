@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <h1> 회원가입 </h1>
+    <h1> Project.H </h1>
     <main>
         <form action="" method="POST">
             {% csrf_token %}
@@ -44,8 +44,14 @@
                                 maxlength="1" oninput="inputNum2(this.id)" required> * * * * * *</span>
                     </li>
                     <li class="error jumin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
+                    <li>
+                        <label for="phone">핸드폰 번호</label>
+                        <input type="tel" name="phone1" id="phone" maxlength="3" oninput="inputNum1(this.id)" style="width: 124px;" required> -
+                        <input type="tel" name="phone2" id="phone" maxlength="4" oninput="inputNum1(this.id)" style="width: 125px;" required> -
+                        <input type="tel" name="phone3" id="phone" maxlength="4" oninput="inputNum1(this.id)" style="width: 125px;" required>
+                    </li>
                     <li class="address">
-                        <label for="address">주소</label> <!-- 여기에다가 주소api넣어보기-->
+                        <label for="address">주소</label>
                         <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num" name="address_num">
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_Btn"
                             id="address_Btn" name="address_Btn">
@@ -84,13 +90,12 @@
                     <!-- error 코드 hidden -->
                     <li class="error re_pw_error">비밀번호와 일치하지 않습니다</li>
                     <li>
-                        <label for="email">이메일(선택)</label>
+                        <label for="email">이메일</label>
                         <div class="emailbox">
-                            <input type="text" name="emailId" id="emailId" class="emailId"
-                                onchange="change_go2(this.form)" value="">
+                            <input type="text" name="emailId" id="emailId" class="emailId" value="">
                             @
-                            <input class="box" id="domain-txt" name="domain-txt" type="text" value="">
-                            <select class="box" id="domain-list">
+                            <input class="email2" id="domain-txt" name="domain-txt" type="text" value="">
+                            <select class="box" id="domain-list" name="domain-list">
                                 <option value="type">직접 입력</option>
                                 <option value="naver.com">naver.com</option>
                                 <option value="google.com">google.com</option>
@@ -204,7 +209,7 @@
                 return false; // 폼 제출을 중지합니다.
             }
 
-            // 서버로 중복 확인 요청
+            // 서버로 중복 확인 요청. 마지막 버튼 눌렀을 시 적용
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/check_duplicate_id/', false); // 동기적 요청으로 변경
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

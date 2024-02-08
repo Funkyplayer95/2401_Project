@@ -151,7 +151,7 @@ li {
 
 select.box {
     margin-left: 5px;
-    width: 30%;
+    width: 100px;
     height: 37px;
     box-sizing: border-box;
     padding: 5px 0 5px 10px;
@@ -168,6 +168,24 @@ option {
 .box #domain-list option {
     font-size: 14px;
     background-color: #ffffff;
+}
+.checkemail{
+    width: 100px;
+    height: 30px;
+    margin-left: 3px;
+    margin-bottom: 5px;
+    padding: 0;
+    cursor: pointer;
+    background: black;
+    color: white;
+    box-shadow: 0 3px 3px rgb(54, 18, 87);
+    border: 0;
+}
+.checkemail:active {
+    position: relative;
+    top: 3px;
+    box-shadow: 0 0 1px rgb(54, 18, 87);
+
 }
 
 

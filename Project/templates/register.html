@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <h1> Project.H </h1>
+    <h1> <a href="/" style="font-size: 30px;">Project.H</a> </h1>
     <main>
-        <form action="" method="POST">
+        <form action="" method="POST" id="signupForm">
             {% csrf_token %}
             <fieldset class="name_birth">
                 <legend class="skip">정보</legend>
@@ -38,29 +38,37 @@
                     <li>
                         <label for="jumin">주민등록번호</label>
                         <span><input type="text" name="jumin1" class="jumin1" id="jumin1" maxlength="6"
-                                placeholder="앞 6자리" oninput="inputNum1(this.id)" required> </span>
+                                placeholder="앞 6자리" oninput="inputNum1(this.value)" required> </span>
                         -
                         <span class="jumin2span"><input type="text" name="jumin2" class="jumin2" id="jumin2"
-                                maxlength="1" oninput="inputNum2(this.id)" required> * * * * * *</span>
+                                maxlength="1" oninput="inputNum2(this.id)" onblur="jumin2_Blur();" required>* * * * *
+                            *</span>
                     </li>
                     <li class="error jumin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
                     <li>
                         <label for="phone">핸드폰 번호</label>
-                        <input type="tel" name="phone1" id="phone" maxlength="3" oninput="inputNum1(this.id)" style="width: 124px;" required> -
-                        <input type="tel" name="phone2" id="phone" maxlength="4" oninput="inputNum1(this.id)" style="width: 125px;" required> -
-                        <input type="tel" name="phone3" id="phone" maxlength="4" oninput="inputNum1(this.id)" style="width: 125px;" required>
+                        <input type="tel" name="phone1" id="phone1" maxlength="3" oninput="inputNum3(this.id)"
+                            style="width: 124px;" required> -
+                        <input type="tel" name="phone2" id="phone2" maxlength="4" oninput="inputNum3(this.id)"
+                            style="width: 125px;" required> -
+                        <input type="tel" name="phone3" id="phone3" maxlength="4" oninput="inputNum3(this.id)"
+                            style="width: 125px;" required>
                     </li>
                     <li class="address">
-                        <label for="address">주소</label>
-                        <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num" name="address_num">
+                        <label for="address">주소 *</label>
+                        <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num"
+                            name="address_num">
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_Btn"
                             id="address_Btn" name="address_Btn">
-                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소" vlaue="" name="address_doro" readonly>
+                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소" vlaue="" name="address_doro"
+                            readonly>
                         <!--readonly를 사용하여 수정 불가하게끔-->
-                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="" name="address_jibun" readonly>
+                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소" value="" name="address_jibun"
+                            readonly>
                         <!--readonly를 사용하여 수정 불가하게끔-->
                         <span id="guide" style="color:#999;display:none; margin-bottom: 10px;"></span>
-                        <input type="text" id="sample4_detailAddress" placeholder="상세주소" value="" name="address_detail" required />
+                        <input type="text" id="sample4_detailAddress" placeholder="상세주소" value="" name="address_detail"
+                            required />
                         <input type="hidden" id="sample4_extraAddress" placeholder="참고항목"> <!--이부분은 hidden으로 숨긴다-->
                     </li>
                 </ul>
@@ -70,22 +78,25 @@
                 <ul>
                     <li>
                         <label for="id" class="idlabel">아이디 (6~10자리)</label>
-                        <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=userid required />
-                        <input type="button" id="check_button" value="ID 중복 검사" class="checkid" onclick="checkDuplicateId()" />
-                        <p id="idCheckResult" style="color: red;"></p>
+                        <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=userid onblur="id_Blur()"
+                            oninput="english_number_id()" required />
+                        <input type="button" id="check_button" value="ID 중복 검사" class="checkid"
+                            onclick="checkDuplicateId()" />
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error id_error">6~10 자리 사이로 입력해야합니다.</li>
+                    <li id="idCheckResult" style="color: red; margin-right: 3px;"></li>
                     <li>
                         <label for="password">비밀번호 (8자리 이상)</label>
                         <input type="password" id="password" placeholder="특수문자 & 영어 & 숫자 포함 " name="password"
-                            required />
+                            onblur="pw_Blur()" required />
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error pw_error">특수문자 & 영어 포함 / 8자리 이상 입력해야합니다.</li>
                     <li>
                         <label for="re_password">비밀번호 확인</label>
-                        <input type="password" id="re_password" name="re_password" placeholder="비밀번호 재입력" required />
+                        <input type="password" id="re_password" name="re_password" placeholder="비밀번호 재입력"
+                            onblur="re_pw_Blur()" required />
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error re_pw_error">비밀번호와 일치하지 않습니다</li>
@@ -103,21 +114,18 @@
                                 <option value="nate.com">nate.com</option>
                                 <option value="kakao.com">kakao.com</option>
                             </select>
+                            <input type="button" id="email_send" value="이메일 인증" class="checkemail"
+                                onclick="checkEmail()" />
                         </div>
                     </li>
-                    <!-- <li>
-                        <label for="fileupload">대표 이미지</label>
-                        <input type="file" name="imgfile" id="imgfile" class="imgfile">
-                    </li> -->
                 </ul>
             </fieldset>
-
-            <input type="submit" name="finsh" value="회원가입" onclick="checkForm()"/>
+            <input type="submit" name="finsh" value="회원가입" onclick="checkForm()" />
         </form>
-
     </main>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="../static/js/registscript.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <script>
         //kakao 주소 API
         //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -173,31 +181,44 @@
                         guideTextBox.style.display = 'none';
                     }
                 }
-
             }).open();
         }
+
         // 중복체크 버튼용 script 함수
-        function checkDuplicateId() { 
+        function checkDuplicateId() {
             const idInput = document.getElementById('id');
             const idValue = idInput.value;
 
-            if (idValue === '') {
+            if (idValue === '') { // 아이디를 입력하지 않았을 경우, 메시지 표시
                 alert('ID를 입력해주세요.');
                 return;
             }
             // 서버로 중복 확인 요청
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/check_duplicate_id/', true);
+            const xhr = new XMLHttpRequest(); //XML객체 생성. 이 객체를 이용해 서버에 http요청을 보낼 수 있음.
+            xhr.open('POST', '/check_duplicate_id/', true); // HTTP요청을 초기화하여 메서드,요청url,비동기여부 결정.
+            
+            // 요청 헤더를 설정. 서버에 데이터를 url인코딩된 형식으로 보낼것임을 알리는방식
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    document.getElementById('idCheckResult').innerText = response.message;
+
+            xhr.onreadystatechange = function () { // readystatechange이벤트 핸들러.
+                
+                // readyState 는 요청의 현재 상태. 4 = 요청 완료됨. status는 http 응답 상태 코드. 200은 요청 성공 처리됨 의미. 이조건문은 요청이 완료될때를 의미
+                if (xhr.readyState === 4 && xhr.status === 200) { 
+                    const response = JSON.parse(xhr.responseText); //서버로부터 받은 응답을 파싱하는 부분. responseText는 서버로 받은 응답 문자열 나타냄. JSON.parse는 문자열을 js객체로 변환
+                    document.getElementById('idCheckResult').innerText = response.message; //서버 응답에서 받은 메세지를 화면에 표시. 
+                    if (response.status === 'error') { // status = 응답상태. 응답상태가 error면 red로. 아니면 green으로.
+                        document.getElementById('idCheckResult').style.color = 'red';
+                        document.getElementById('id').focus(); //error로 진행될 시 'id'쪽을 포커스하도록 함.
+                        return;
+                    }
+                    else { document.getElementById('idCheckResult').style.color = 'green'; }
                 }
-            };
-            const data = `userid=${idValue}`;
-            xhr.send(data);
-        }
+            }
+            const data = `userid=${idValue}`; //서버에 보낼 데이터 준비.
+            xhr.send(data); //HTTP요청을 실제로 서버에 보내는 부분.
+        };
+
+
 
         // 회원가입 제출용 script 함수
         function checkForm() {
@@ -225,10 +246,7 @@
                         alert(response.message);
                         event.preventDefault();
                         return;
-                    }
-                }
-            };
-
+                    }}};
             const data = `userid=${idValue}`;
             xhr.send(data);
 
@@ -240,9 +258,34 @@
 
             return true; // 폼 제출을 진행합니다.
         }
-    
     </script>
-    
+    <!-- 회원가입 팝업창 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 불러오기 -->
+    <script>
+        $('#signupForm').on('submit', function (e) {
+            e.preventDefault(); //폼의 기본 제출동작을 막는다.
+
+            //jQuery 기능. 폼에 입력된 데이터를 url인코딩된 문자열로 만들어주는 역활. 이 메서드 사용시 폼에있는 데이터를 쉽게 서버로 쉽게보냄
+            var formData = $(this).serialize();
+
+            $.post('/regist/', formData, function (response) { //$.post 함수사용하여 비동기적으로 서버에 데이터 송출
+                if (response.status === 'success') { // $.post 함수의 콜백 함수. 서버로 응답받을시 성공/실패 여부에따라 동작 수행
+                    // 팝업창을 띄움
+                    var width = 300;
+                    var height = 200;
+                    var left = (screen.width - width) / 2;
+                    var top = (screen.height - height) / 3;
+                    // 팝업창을 띄울때 / "" = 빈페이지열기 / "Popup" = 새창이름 / 너비, 높이, 왼쪽에서부터 거리, 위에서부터 거리
+                    var popup = window.open("", "Popup", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top); // 팝업창 띄우기
+                    
+                    // 안에 들어가는 내용작성. 확인을 누를 시 페이지가 넘어가도록 설정
+                    popup.document.write("<h3>" + response.message + "</h3><button onclick='window.close(); window.opener.location.href=\"/\";'>확인</button>");
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

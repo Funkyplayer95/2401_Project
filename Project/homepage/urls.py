@@ -19,11 +19,11 @@ from homepage import views
 from myproject import settings
 from django.contrib.auth import views as auth_views
 urlpatterns = [
-    # path('weatherApi/', views.weatherApi),
     path('check_duplicate_id/', views.check_duplicate_id),
-    path('regist/', views.singup),
+    path('regist/', views.signup, name='signup'),
     path('accounts/', include('allauth.urls')),
     path('', include('social_django.urls', namespace='social')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('', views.main),
+    path('', views.main, name='main'),
+    path('email_certification/', views.email_certification),
 ]

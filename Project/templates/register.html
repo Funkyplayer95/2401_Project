@@ -14,37 +14,39 @@
 <body>
     <h1> <a href="/" style="font-size: 30px;">Project.H</a> </h1>
     <main>
-        <form action="" method="POST" id="signupForm">
+        <form action="" method="POST" id="signupForm" class="bigform">
             {% csrf_token %}
             <fieldset class="name_birth">
                 <legend class="skip">정보</legend>
                 <ul>
+                    <!-- 이름 입력 창 -->
                     <li>
                         <label for="name">이름</label>
                         <input type="text" placeholder="이름" id="name" name=name required />
                     </li>
-
+                    <!-- 성별 선택 radio button -->
                     <div class="genderdiv">
                         <label class="genderBtn">
                             <input type="radio" id="genderBtnM" name="gender" value="M" required>
                             <span>남자</span>
                         </label>
-
                         <label class="genderBtn">
                             <input type="radio" id="genderBtnW" name="gender" value="W">
                             <span>여자</span>
                         </label>
                     </div>
+                    <!-- 주민등록번호 입력 창 -->
                     <li>
-                        <label for="jumin">주민등록번호</label>
-                        <span><input type="text" name="jumin1" class="jumin1" id="jumin1" maxlength="6"
+                        <label for="joomin">주민등록번호</label>
+                        <span><input type="text" name="joomin1" class="joomin1" id="joomin1" maxlength="6"
                                 placeholder="앞 6자리" oninput="inputNum1(this.value)" required> </span>
                         -
-                        <span class="jumin2span"><input type="text" name="jumin2" class="jumin2" id="jumin2"
-                                maxlength="1" oninput="inputNum2(this.id)" onblur="jumin2_Blur();" required>* * * * *
+                        <span class="joomin2span"><input type="text" name="joomin2" class="joomin2" id="joomin2"
+                                maxlength="1" oninput="inputNum2(this.id)" onblur="joomin2_Blur();" required>* * * * *
                             *</span>
                     </li>
-                    <li class="error jumin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
+                    <li class="error joomin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
+                    <!-- 핸드폰 번호 입력창 -->
                     <li>
                         <label for="phone">핸드폰 번호</label>
                         <input type="tel" name="phone1" id="phone1" maxlength="3" oninput="inputNum3(this.id)"
@@ -54,6 +56,7 @@
                         <input type="tel" name="phone3" id="phone3" maxlength="4" oninput="inputNum3(this.id)"
                             style="width: 125px;" required>
                     </li>
+                    <!-- 주소입력 창 -->
                     <li class="address">
                         <label for="address">주소 *</label>
                         <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num"
@@ -73,9 +76,10 @@
                     </li>
                 </ul>
             </fieldset>
-
+            <!-- 아이디 비밀번호 이메일 창 -->
             <fieldset class="user_info">
                 <ul>
+                    <!-- 아이디 입력 창 -->
                     <li>
                         <label for="id" class="idlabel">아이디 (6~10자리)</label>
                         <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=userid onblur="id_Blur()"
@@ -85,7 +89,10 @@
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error id_error">6~10 자리 사이로 입력해야합니다.</li>
+                    <!-- 중복체크  -->
                     <li id="idCheckResult" style="color: red; margin-right: 3px;"></li>
+
+                    <!-- 비밀번호 입력 창 -->
                     <li>
                         <label for="password">비밀번호 (8자리 이상)</label>
                         <input type="password" id="password" placeholder="특수문자 & 영어 & 숫자 포함 " name="password"
@@ -93,6 +100,7 @@
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error pw_error">특수문자 & 영어 포함 / 8자리 이상 입력해야합니다.</li>
+                    <!-- 비밀번호 확인 입력 창 -->
                     <li>
                         <label for="re_password">비밀번호 확인</label>
                         <input type="password" id="re_password" name="re_password" placeholder="비밀번호 재입력"
@@ -100,27 +108,40 @@
                     </li>
                     <!-- error 코드 hidden -->
                     <li class="error re_pw_error">비밀번호와 일치하지 않습니다</li>
+                    <br>
+                    <!-- 이메일 입력 창 -->
                     <li>
-                        <label for="email">이메일</label>
-                        <div class="emailbox">
-                            <input type="text" name="emailId" id="emailId" class="emailId" value="">
-                            @
-                            <input class="email2" id="domain-txt" name="domain-txt" type="text" value="">
-                            <select class="box" id="domain-list" name="domain-list">
-                                <option value="type">직접 입력</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="google.com">google.com</option>
-                                <option value="hanmail.net">hanmail.net</option>
-                                <option value="nate.com">nate.com</option>
-                                <option value="kakao.com">kakao.com</option>
-                            </select>
-                            <input type="button" id="email_send" value="이메일 인증" class="checkemail"
-                                onclick="checkEmail()" />
-                        </div>
+                        <form action="method" id="emailForm">
+                            <label for="email">이메일</label>
+                            <div class="emailbox">
+                                <input type="text" name="emailId" id="emailId" class="emailId" value="">
+                                @
+                                <input class="email2" id="domain-txt" name="domain-txt" type="text" value="">
+                                <select class="box" id="domain-list" name="domain-list">
+                                    <option value="type">직접 입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="google.com">google.com</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="kakao.com">kakao.com</option>
+                                </select>
+                                <!-- 이메일 인증 -->
+                                <input type="button" id="email_send" value="이메일 인증" class="checkemail"
+                                    onclick="sendEmail()" />
+                            </div>
+                        </form>
+                    </li>
+                    <!-- 인증코드 입력창 -->
+                    <li style="margin-top: 5px;">
+                        <form action="method" id="verificationForm">
+                            <input type="text" name="code" id="code" style="width: 250px;" placeholder="인증번호를 입력해주세요">
+                            <input type="button" class="checkid" onclick="verifyCode()" value="인증 확인"></button>
+                        </form>
                     </li>
                 </ul>
-            </fieldset>
+            
             <input type="submit" name="finsh" value="회원가입" onclick="checkForm()" />
+        </fieldset>
         </form>
     </main>
     <script src="../static/js/registscript.js"></script>
@@ -196,14 +217,14 @@
             // 서버로 중복 확인 요청
             const xhr = new XMLHttpRequest(); //XML객체 생성. 이 객체를 이용해 서버에 http요청을 보낼 수 있음.
             xhr.open('POST', '/check_duplicate_id/', true); // HTTP요청을 초기화하여 메서드,요청url,비동기여부 결정.
-            
+
             // 요청 헤더를 설정. 서버에 데이터를 url인코딩된 형식으로 보낼것임을 알리는방식
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             xhr.onreadystatechange = function () { // readystatechange이벤트 핸들러.
-                
+
                 // readyState 는 요청의 현재 상태. 4 = 요청 완료됨. status는 http 응답 상태 코드. 200은 요청 성공 처리됨 의미. 이조건문은 요청이 완료될때를 의미
-                if (xhr.readyState === 4 && xhr.status === 200) { 
+                if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText); //서버로부터 받은 응답을 파싱하는 부분. responseText는 서버로 받은 응답 문자열 나타냄. JSON.parse는 문자열을 js객체로 변환
                     document.getElementById('idCheckResult').innerText = response.message; //서버 응답에서 받은 메세지를 화면에 표시. 
                     if (response.status === 'error') { // status = 응답상태. 응답상태가 error면 red로. 아니면 green으로.
@@ -223,7 +244,7 @@
         // 회원가입 제출용 script 함수
         function checkForm() {
             const idInput = document.getElementById('id');
-            const idValue = idInput.value.trim();
+            const idValue = idInput.value.trim(); // 문자 좌우 공백을 제거하는 trim사용. 사용안해도 괜찮음.
 
             if (idValue === '') {
                 alert('ID를 입력해주세요.');
@@ -232,21 +253,23 @@
 
             // 서버로 중복 확인 요청. 마지막 버튼 눌렀을 시 적용
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/check_duplicate_id/', false); // 동기적 요청으로 변경
+            xhr.open('POST', '/check_duplicate_id/', false); // post로 보내고, 해당이름으로, 동기적 요청
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             let isDuplicate = false; // 중복여부 저장하는 변수 추가
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    document.getElementById('idCheckResult').innerText = response.message;
+                    document.getElementById('idCheckResult').innerText = response.message; //innerText = li로 만들었기에 표시를 위해 사용.
 
                     // 중복이면 폼 제출을 중지합니다.
                     if (response.status === 'error') {
-                        isDuplicate = true;
+                        isDuplicate = true; //밑에 폼 중지하는 코드를 위해 사용. true로 만들어 폼 중지.
                         alert(response.message);
                         event.preventDefault();
                         return;
-                    }}};
+                    }
+                }
+            };
             const data = `userid=${idValue}`;
             xhr.send(data);
 
@@ -277,7 +300,7 @@
                     var top = (screen.height - height) / 3;
                     // 팝업창을 띄울때 / "" = 빈페이지열기 / "Popup" = 새창이름 / 너비, 높이, 왼쪽에서부터 거리, 위에서부터 거리
                     var popup = window.open("", "Popup", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top); // 팝업창 띄우기
-                    
+
                     // 안에 들어가는 내용작성. 확인을 누를 시 페이지가 넘어가도록 설정
                     popup.document.write("<h3>" + response.message + "</h3><button onclick='window.close(); window.opener.location.href=\"/\";'>확인</button>");
                 }

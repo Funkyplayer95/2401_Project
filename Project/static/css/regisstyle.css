@@ -1,4 +1,4 @@
-form {
+.bigform {
     max-width: 400px;
     margin: 0 auto;
 }
@@ -101,10 +101,10 @@ li {
 }
 
 .checkid {
-    width: 100px;
+    width: 85px;
     height: 30px;
     margin-top: 3px;
-    margin-left: 44px;
+    margin-left: 61px;
     padding: 0;
     cursor: pointer;
     background: black;
@@ -121,15 +121,15 @@ li {
 }
 
 /* birth css */
-.jumin1 {
+.joomin1 {
     width: 48.5%;
 }
 
-.jumin2 {
+.joomin2 {
     width: 10%
 }
 
-.jumin2span {
+.joomin2span {
     font-size: 30px;
 }
 
@@ -142,11 +142,11 @@ li {
 }
 
 .emailId {
-    width: 35%;
+    width: 25%;
 }
 
 #domain-txt {
-    width: 30%;
+    width: 25%;
 }
 
 select.box {
@@ -170,7 +170,7 @@ option {
     background-color: #ffffff;
 }
 .checkemail{
-    width: 100px;
+    width: 90px;
     height: 30px;
     margin-left: 3px;
     margin-bottom: 5px;
@@ -180,6 +180,7 @@ option {
     color: white;
     box-shadow: 0 3px 3px rgb(54, 18, 87);
     border: 0;
+    
 }
 .checkemail:active {
     position: relative;
@@ -199,6 +200,7 @@ option {
 
 /* submit css */
 input[type="submit"] {
+    width: 400px;
     margin-top: 20px;
     background-color: black;
     color: white;

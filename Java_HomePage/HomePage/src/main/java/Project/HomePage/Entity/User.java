@@ -2,6 +2,7 @@ package Project.HomePage.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -9,6 +10,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "userinfo")
 @ToString
 public class User {
 
@@ -25,5 +27,6 @@ public class User {
     private String userAddressDoro;
     private String userAddressJibun;
     private String userAddressDetail;
+    private int userPhone;
     private int userImageId;
 }

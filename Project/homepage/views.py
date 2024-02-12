@@ -12,6 +12,8 @@ import random #랜덤인증코드 전송을 위해 사용.
 import smtplib #이메일 전송 위해
 from email.mime.text import MIMEText #이메일 전송 위해
 from django.contrib.messages import constants as message_constants
+from rest_framework import viewsets
+from .serializers import withSpring
 
 # @csrf_exempt는 장고에서 제공하는 데코레이터. cross-site Request Forgery 보호기능을 무시함.
 # CSRF는 웹사이트 취약점 공격중 하나. 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위를 특정 웹 사이트에 요청하게 만드는 공격
@@ -206,3 +208,7 @@ def verify_code(request): # 인증코드 확인하는
 
     return JsonResponse({'status': 'error', 'message': '잘못된 요청입니다.'})
 #################################################################################
+
+class ModelViewSet(viewsets.ModelViewSet):
+    queryset = Userinfo.objects.all()
+    serializer_class = withSpring

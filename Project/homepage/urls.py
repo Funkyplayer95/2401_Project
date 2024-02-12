@@ -18,6 +18,13 @@ from django.urls import path, include
 from homepage import views
 from myproject import settings
 from django.contrib.auth import views as auth_views
+from rest_framework.routers import DefaultRouter
+from .views import ModelViewSet
+
+router = DefaultRouter()
+router.register(r'your_model', ModelViewSet)
+
+
 urlpatterns = [
     path('check_duplicate_id/', views.check_duplicate_id),
     path('regist/', views.signup, name='signup'),
@@ -28,4 +35,6 @@ urlpatterns = [
     path('send_code_email/', views.send_code_email),
     path('verify_code/', views.verify_code),
     path('login/', views.login, name='login'),
+    path('api/', include(router.urls)),
+    
 ]

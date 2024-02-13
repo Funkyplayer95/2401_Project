@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/mypagestyle.css}">
+
+
+</head>
+
+<body>
+    <div class="mypage">
+        <h2>My Page</h2>
+        <form>
+            <div class="profile-image">
+                <img id="image" src="../static/반지1.jpg" alt="Profile image">
+                <input type="file" id="imageFile" name="imageFile">
+            </div>
+            <div>User ID: <p th:text="${user.userId}"></p>
+            </div>
+            <form action="changePassword" method="post">
+                <div>User PW : <p th:text="${user.userPassword}"></p>
+                </div>
+            </form>
+            <div>Name: <p th:text="${user.userName}"></p>
+            </div>
+            <div>Email: <p th:text="${user.userEmail}"></p>
+            </div>
+            <div>Phone: <p th:text="${user.userPhone}"></p>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+
+</html>

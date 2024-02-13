@@ -43,29 +43,6 @@ class Cityweather(models.Model):
     def _str_(self): #메인에 DB에 저장되어있는 이름이 표시되도록 함
         return self.name
     
-# 상품 db
-class Product(models.Model):
-    code = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    price = models.IntegerField(blank=True, null=True)
-    size = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'product'
-
-# 장바구니 db
-class Cart(models.Model):
-    user = models.ForeignKey('Userinfo', on_delete=models.CASCADE, db_column='user',related_name='carts', to_field='user_id')       
-    product = models.ForeignKey('Product',on_delete=models.CASCADE,  db_column='product', blank=True, null=True)
-    quantity = models.IntegerField(default=1)
-    added_time = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        managed = False
-        db_table = 'cart'
-
-    
 
 # class Userimg(models.Model):
     

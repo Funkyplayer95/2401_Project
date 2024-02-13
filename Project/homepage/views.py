@@ -21,11 +21,6 @@ from .serializers import withSpring
 
 MESSAGE_LEVEL = message_constants.DEBUG
 
-# 장바구니
-def cart(request):
-    carts = Userinfo.objects.get(user_id = request.user.user_id).carts.all()
-    return render(request, 'mypage.html', {'carts':carts})
-
 ########################## 메인 부분 ######################################
 def main(request):
     kakaoapi = settings.KAKAO_API_KEY # settings에 저장되어있는 kakao api key 호출
@@ -52,11 +47,12 @@ def main(request):
             print(f"{city_name}의 날씨 정보를 불러오는데 실패했습니다.")
     
     # 로그인된 사용자의 아이디를 가져온다.
-    user_id = request.session.get('user_id')
+    user_id = request.session.get("user_id")
 
     # 날씨 api 와 카카오지도 api키를 가져와서 context안에 저장시킴.
-    context = {'weather_data' : weather_data , 'kakaoapi' : kakaoapi, 'user_id': user_id} # context안에 작성하면 html에서 {{ }} 로 불러올 수 있음
-    print(request.session.get('user_id')) # 저장되어 있는 session의 user_id를 출력해본다.
+    context = {'weather_data' : weather_data , 'kakaoapi' : kakaoapi, "user_id": user_id, 'idvalue': request.session.get('user_id')} # context안에 작성하면 html에서 {{ }} 로 불러올 수 있음
+    print(request.session.get("user_id")) # 저장되어 있는 session의 user_id를 출력해본다.
+    
 
     return render(request, 'main.html', context) 
 #################################################################################
@@ -136,8 +132,9 @@ def login(request):
         try:
             user = Userinfo.objects.get(user_id=user_id) # 데이터베이스에 있는 user_id와 비교했을때 id가 일치하는지
             if check_password(user_password, user.user_password): # pw value값과 id가 일치한 데이터베이스의 password가 참이면
-                request.session['user_id'] = user_id # 세션의 user_id에 id값을 저장한다
+                request.session["user_id"] = user_id # 세션의 user_id에 id값을 저장한다
                 messages.success(request, '로그인에 성공하였습니다.')  # 로그인 성공 메시지
+                print(request.session["user_id"])
                 return redirect('/')  # 로그인 성공 후 리다이렉션할 페이지
             else:
                 # 비밀번호가 틀린 경우
@@ -209,6 +206,6 @@ def verify_code(request): # 인증코드 확인하는
     return JsonResponse({'status': 'error', 'message': '잘못된 요청입니다.'})
 #################################################################################
 
-class ModelViewSet(viewsets.ModelViewSet):
-    queryset = Userinfo.objects.all()
-    serializer_class = withSpring
+# class ModelViewSet(viewsets.ModelViewSet):
+#     queryset = Userinfo.objects.all()
+#     serializer_class = withSpring

@@ -45,8 +45,18 @@
 
                 <div class="col-4 pt-1">
                     {% if user.is_authenticated or user_id %} <!-- 로그인이 되어있는 상태라면 -->
-                    <a class="btn btn-primary" style="background: blueviolet;
-                    border: none;" href="mypage/">My Page</a>
+                    <form action="http://localhost:8001/mypage" method="post">
+                        <input type="hidden" name="idvalue" value="{{user_id}}">
+                        <button type="submit" class="btn btn-primary" style="background: blueviolet; border: none;">My
+                            Page</button>
+                    </form>
+                    <script>
+                        localStorage.setItem('idvalue', '{{ idvalue }}');
+
+                        document.getElementById('idvalue').addEventListener('click', function () {
+                            window.location.href = 'http://localhost:8001/mypage?idvalue=' + localStorage.getItem('idvalue');
+                        });
+                    </script>
                     {% else %} <!-- 그렇지 않을경우 비운다. -->
 
                     {% endif %} <!-- if문 끝날때 사용 -->
@@ -256,7 +266,7 @@
                                 <option value="2XL">2XL</option>
                             </select>
                             <br>
-                            {% if user.is_authenticated %}
+                            {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
                                 background-color: blueviolet; border: none; width: 150px; height: 50px;">
@@ -313,7 +323,7 @@
                                 <option value="2XL">2XL</option>
                             </select>
                             <br>
-                            {% if user.is_authenticated %}
+                            {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
                                 background-color: blueviolet; border: none; width: 150px; height: 50px;">
@@ -366,7 +376,7 @@
                                 <option value="L">L</option>
                             </select>
                             <br>
-                            {% if user.is_authenticated %}
+                            {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
                                 background-color: blueviolet; border: none; width: 150px; height: 50px;">

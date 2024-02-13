@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+    <title>hello world</title>
+
+</head>
+<body>
+
+hello world
+<div th:each="user : ${userList}">
+    <div>
+        id = <span th:text="${user.userId}"></span><br>
+        Name = <span th:text="${user.userName}"></span><br>
+    </div>
+</div>
+</body>
+</html>

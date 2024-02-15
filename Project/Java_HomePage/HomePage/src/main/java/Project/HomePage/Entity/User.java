@@ -27,4 +27,6 @@ public class User {
     private String user_address_jibun;
     private String user_address_detail;
     private String user_phone;
+    private String profile_image;
+    private String imageExtension;
 }

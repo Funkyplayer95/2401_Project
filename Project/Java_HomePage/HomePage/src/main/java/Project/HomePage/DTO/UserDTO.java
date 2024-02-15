@@ -15,4 +15,6 @@ public class UserDTO {
     private String userEmail;
     private String userPhone;
     private int userImageId;
+    private String profileImage;
+    private String imageExtension;
 }

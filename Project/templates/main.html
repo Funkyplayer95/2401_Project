@@ -46,7 +46,7 @@
                 <div class="col-4 pt-1">
                     {% if user.is_authenticated or user_id %} <!-- 로그인이 되어있는 상태라면 -->
                     <form action="http://localhost:8001/mypage" method="post">
-                        <input type="hidden" name="idvalue" value="{{user_id}}">
+                        <input type="hidden" name="idvalue" id="idvalue" value="{{user_id}}">
                         <button type="submit" class="btn btn-primary" style="background: blueviolet; border: none;">My
                             Page</button>
                     </form>

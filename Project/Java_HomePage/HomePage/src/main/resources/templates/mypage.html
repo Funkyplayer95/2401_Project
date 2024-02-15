@@ -12,25 +12,54 @@
 
 <body>
     <div class="mypage">
+        <!-- 이부분안에 주석처리된것은 thymeleaf의 javascript문법이다. 
+        /*[[${message}]]*/ message에 값이 있으면 출력, 없으면 뒷 메시지 출력한다.-->
+
+        <script th:inline="javascript">  
+            /*<![CDATA[*/ 
+            var message = /*[[${message}]]*/ 'default message';
+            var error = /*[[${error}]]*/ 'default error';
+            if (message) {alert(message);}
+            if (error) {alert(error);}
+            /*]]>*/
+        </script>
         <h2>My Page</h2>
-        <form>
+        <form action="uploadProfileImage" method="post" enctype="multipart/form-data">
             <div class="profile-image">
-                <img id="image" src="../static/반지1.jpg" alt="Profile image">
+                <img id="image" th:src="'data:image/' + ${user.imageExtension} + ';base64,' + ${user.profileImage}"
+                    alt="Profile image">
                 <input type="file" id="imageFile" name="imageFile">
+                <input type="hidden" name="idvalue" id="idvalue" th:value="${user.userId}">
+                <input type="submit" value="Upload" id="uploadButton">
             </div>
-            <div>User ID: <p th:text="${user.userId}"></p>
+        </form>
+        <script>
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                localStorage.setItem('idvalue', document.getElementById('idvalue').value);
+                window.location.href = 'http://localhost:8001/mypage?idvalue=' + localStorage.getItem('idvalue');
+            });
+        </script>
+        <div>User ID: <p th:text="${user.userId}" name="idvalue"></p>
+        </div>
+        <form action="changePassword" method="post">
+            <div>Edit password
+                <input type="submit" value="비밀번호 변경" class="cssbtn">
             </div>
-            <form action="changePassword" method="post">
-                <div>User PW : <p th:text="${user.userPassword}"></p>
-                </div>
-            </form>
-            <div>Name: <p th:text="${user.userName}"></p>
+        </form>
+        <div>Name: <p th:text="${user.userName}"></p>
+        </div>
+        <div>Email: <p th:text="${user.userEmail}"></p>
+        </div>
+        <div>Phone: <p th:text="${user.userPhone}"></p>
+        </div>
+        <form action="changePhone" method="post">
+            <div>Edit PhoneNumber
+                <input type="submit" value="전화번호 변경" class="cssbtn">
             </div>
-            <div>Email: <p th:text="${user.userEmail}"></p>
-            </div>
-            <div>Phone: <p th:text="${user.userPhone}"></p>
-            </div>
-            <input type="submit" value="Update">
+        </form>
+        <form action="http://localhost:8000" method="get">
+            <button type="submit" onclick="window.location.href='http://localhost:8000'"
+                    value="홈으로" ></button>
         </form>
     </div>
 </body>

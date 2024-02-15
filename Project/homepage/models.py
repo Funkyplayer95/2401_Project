@@ -16,6 +16,8 @@ class Userinfo(models.Model):
     user_address_jibun = models.CharField(max_length=100, blank=True, null=True)
     user_address_detail = models.CharField(max_length=100, blank=True, null=True)
     user_phone = models.CharField(max_length=100)
+    image_extension = models.CharField(max_length=255, blank=True, null=True)
+    profile_image = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

@@ -4,7 +4,8 @@ body {
 }
 
 .mypage {
-    width: 30vw;
+
+    width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -46,7 +47,7 @@ body {
     border-radius: 5px;
 }
 
-.mypage input[type="submit"] {
+.mypage input[type="button"] {
     margin-top: 20px;
     padding: 10px;
     border: none;
@@ -56,6 +57,6 @@ body {
     border-radius: 5px;
 }
 
-.mypage input[type="submit"]:hover {
+.mypage input[type="button"]:hover {
     background-color: #4263eb;
 }

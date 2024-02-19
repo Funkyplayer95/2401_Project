@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jc2v==83snwas^2ajr=#5$qxa#qs0588gh^=0f$t+5#07i(ju8' ###################
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -199,21 +199,20 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SOCIAL_AUTH_URL_NAMESPACEE = 'social'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '644928889515-jk2etpjnln7nhtku0bn844030fte72gj.apps.googleusercontent.com' # 구글 로그인 api 키 ###################
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' ###################
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 # 이메일 인증 코드
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'jonghs1004@gmail.com' #이메일을 보낼 G-mail계정
-EMAIL_HOST_PASSWORD = 'kexu gpuh pvpi ujrw' # 설정한 앱 비밀번호 ###################
+EMAIL_HOST_USER = '' #이메일을 보낼 G-mail계정
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-KAKAO_API_KEY = 'fe74f15427eea1d6a546b4bb2f811f5e' #카카오 지도 api 키 ###################
-OPENWEATHERMAP_API_KEY = 'da80d19c713abc67a904e3cdca5d5383' # 오픈웨더맵 api  ###################
+KAKAO_API_KEY = ''
+OPENWEATHERMAP_API_KEY =  ''
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',

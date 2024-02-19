@@ -1,22 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-
-}
-
-.mypage {
-
-    width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-}
-
-.mypage h2 {
-    text-align: center;
-    color: #333;
-}
-
 .mypage .profile-image {
     display: flex;
     flex-direction: column;
@@ -25,38 +6,101 @@ body {
 }
 
 .mypage .profile-image img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    margin-bottom: 20px;
 }
 
-.mypage form {
-    display: flex;
-    flex-direction: column;
+main{
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.mypage label {
-    margin: 10px 0 5px;
-    color: #555;
-}
 
-.mypage p {
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.mypage input[type="button"] {
+h1 {
+    text-align: center;
     margin-top: 20px;
-    padding: 10px;
-    border: none;
-    color: white;
-    background-color: #5c7cfa;
-    cursor: pointer;
-    border-radius: 5px;
+    font-size: 30px;
+    color: black;
+    padding-bottom: 30px;
 }
 
-.mypage input[type="button"]:hover {
-    background-color: #4263eb;
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+
+li {
+    padding-bottom: 5px;
+    padding-top: 5px
+}
+
+.name_phone_id_email {
+    border-bottom: 5px double black;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Id CSS */
+
+.id {
+    width: 250px;
+}
+
+/* email css */
+.emailbox {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.emailId {
+    width: 25%;
+}
+
+.box #domain-list option {
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+
+/* error css */
+.error {
+    color: red;
+    padding: 10px;
+    display: none;
+}
+
+
+/* submit css */
+input[type="submit"], input[type="button"] {
+    width: 400px;
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    cursor: pointer;
+    background: black;
+    color: white;
+    box-shadow: 0 3px 3px rgb(54, 18, 87);
+    border: 0;
+}
+
+input[type='submit']:active, input[type="button"]:active {
+    position: relative;
+    top: 3px;
+    box-shadow: 0 0 1px rgb(54, 18, 87);
 }

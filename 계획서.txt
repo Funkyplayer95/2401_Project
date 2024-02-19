@@ -29,3 +29,10 @@ Login - modal style 변경 / 회원가입 추가 / google 로그인 / 로그인 
 div 의류 -
 
 <my page>
+
+could not execute statement [Data truncation: Data too long for column 'profile_image' at row1] [update userinfo set profile_image=?, user_address_detail=? user_address_doro=?, user_address_jibun=?, user_address_num=?, user_email=?,user_gender=?,user_name=?,user_password=?,user_phone=?,user_rrn1=?,user_rrn2=?, where user_id=? ...
+
+
+취소하기 = main으로 넘어가게끔 진행해야함.
+암호화 = 두 프레임워크 사이에서 서로다른 암호화 사용으로 해결해야함.
+마이페이지 = 비밀번호 작성 시 조건에 따라 alert창 나오게 할 수 있는 방법 해야함.

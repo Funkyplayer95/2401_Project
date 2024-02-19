@@ -1,3 +1,7 @@
+main{
+    max-width: 400px;
+    margin: 0 auto;
+}
 .bigform {
     max-width: 400px;
     margin: 0 auto;

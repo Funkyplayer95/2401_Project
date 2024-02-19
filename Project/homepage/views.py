@@ -14,6 +14,7 @@ from email.mime.text import MIMEText #이메일 전송 위해
 from django.contrib.messages import constants as message_constants
 from rest_framework import viewsets
 from .serializers import withSpring
+import bcrypt
 
 # @csrf_exempt는 장고에서 제공하는 데코레이터. cross-site Request Forgery 보호기능을 무시함.
 # CSRF는 웹사이트 취약점 공격중 하나. 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위를 특정 웹 사이트에 요청하게 만드는 공격
@@ -102,6 +103,7 @@ def signup(request):
             # 중복이 아닌 경우 계속 진행하도록
             userid = request.POST.get('userid',None) # 아이디는 중복체크 후 진행하기에 이곳에 진행하였다.
             
+            
             user = Userinfo(user_id=userid,
                             user_password=make_password(password),
                             user_name=name,
@@ -129,6 +131,7 @@ def login(request):
     if request.method == 'POST':
         user_id = request.POST['loginid'] # id value값
         user_password = request.POST['loginpw'] # pw value 값
+        
         try:
             user = Userinfo.objects.get(user_id=user_id) # 데이터베이스에 있는 user_id와 비교했을때 id가 일치하는지
             if check_password(user_password, user.user_password): # pw value값과 id가 일치한 데이터베이스의 password가 참이면

@@ -43,7 +43,7 @@ public class UserService {
     //비즈니스 로직에서 쪼갤 수 없는 하나의 작업 단위. 데이터베이스 상태변경하며 한 번에 수행되어야 한다.
     public void updatePassword(String id, String newPw) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("유저를 찾을 수 없습니다." + id));
+        User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         //더티체킹(Dirty Checking) = JPA 핵심 기능. 전체 데이터베이스 안불러와도 됨.
@@ -53,7 +53,7 @@ public class UserService {
     @Transactional
     public void updatePhone(String id, String newPhone) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("유저를 찾을 수 없습니다." + id));
+        User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         user.setUser_phone(newPhone);
         userRepository.save(user);
     }
@@ -90,26 +90,6 @@ public class UserService {
         }
         return extension;
     }
-
-
-
-
-
-//    public List<UserDTO> getAllUser(){
-//        List<User> users = userRepository.findAll();
-//        List<UserDTO> userDTOs = new ArrayList<>();
-//
-//        for (User user : users) {
-//            UserDTO userDTO = new UserDTO();
-//            userDTO.setUserId(user.getUser_id());
-//            userDTO.setUserName(user.getUser_name());
-//
-//            userDTOs.add(userDTO);
-//        }
-//
-//        return userDTOs;
-//    }
-
 
 }
 

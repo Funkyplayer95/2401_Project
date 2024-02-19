@@ -77,7 +77,7 @@ function inputNum2(id) {
 
 // 핸드폰 번호 오로지 숫자만 입력하도록
 function inputNum3(id) {
-    var element = document.getElementById('phone');
+    var element = document.getElementById(id);
     element.value = element.value.replace(/[^0-9]/gi, ""); // 대괄호 안 [^] =부정, 0-9 = 숫자, /gi = 전역에 대소문자구분없이 검색 >> 숫자가아니면 ""로 바꾼다.
 }
 

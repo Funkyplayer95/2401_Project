@@ -22,7 +22,7 @@
                     <!-- 이름 입력 창 -->
                     <li>
                         <label for="name">이름</label>
-                        <input type="text" placeholder="이름" id="name" name=name required />
+                        <input type="text" placeholder="이름" id="name" name=name autocomplete="on" required />
                     </li>
                     <!-- 성별 선택 radio button -->
                     <div class="genderdiv">
@@ -37,7 +37,7 @@
                     </div>
                     <!-- 주민등록번호 입력 창 -->
                     <li>
-                        <label for="joomin">주민등록번호</label>
+                        <label for="joomin1">주민등록번호</label>
                         <span><input type="text" name="joomin1" class="joomin1" id="joomin1" maxlength="6"
                                 placeholder="앞 6자리" oninput="inputNum1(this.value)" required> </span>
                         -
@@ -48,17 +48,17 @@
                     <li class="error joomin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
                     <!-- 핸드폰 번호 입력창 -->
                     <li>
-                        <label for="phone">핸드폰 번호</label>
+                        <label for="phone1">핸드폰 번호</label>
                         <input type="tel" name="phone1" id="phone1" maxlength="3" oninput="inputNum3(this.id)"
-                            style="width: 124px;" required> -
+                            style="width: 124px;" autocomplete="off" required> -
                         <input type="tel" name="phone2" id="phone2" maxlength="4" oninput="inputNum3(this.id)"
-                            style="width: 125px;" required> -
+                            style="width: 125px;" autocomplete="off" required> -
                         <input type="tel" name="phone3" id="phone3" maxlength="4" oninput="inputNum3(this.id)"
-                            style="width: 125px;" required>
+                            style="width: 125px;" autocomplete="off" required>
                     </li>
                     <!-- 주소입력 창 -->
                     <li class="address">
-                        <label for="address">주소 *</label>
+                        <label for="sample4_postcode">주소 *</label>
                         <input type="text" id="sample4_postcode" placeholder="우편번호" class="address_num"
                             name="address_num">
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_Btn"
@@ -112,7 +112,7 @@
                     <!-- 이메일 입력 창 -->
                     <li>
                         <form action="method" id="emailForm">
-                            <label for="email">이메일</label>
+                            <label for="domain-txt">이메일</label>
                             <div class="emailbox">
                                 <input type="text" name="emailId" id="emailId" class="emailId" value="">
                                 @
@@ -227,12 +227,12 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText); //서버로부터 받은 응답을 파싱하는 부분. responseText는 서버로 받은 응답 문자열 나타냄. JSON.parse는 문자열을 js객체로 변환
                     document.getElementById('idCheckResult').innerText = response.message; //서버 응답에서 받은 메세지를 화면에 표시. 
-                    if (response.status === 'error') { // status = 응답상태. 응답상태가 error면 red로. 아니면 green으로.
+                    if (response.status === 'error') { // status = 응답상태. 응답상태가 error면 red로.
                         document.getElementById('idCheckResult').style.color = 'red';
                         document.getElementById('id').focus(); //error로 진행될 시 'id'쪽을 포커스하도록 함.
                         return;
                     }
-                    else { document.getElementById('idCheckResult').style.color = 'green'; }
+                    else { document.getElementById('idCheckResult').style.color = 'green'; } //error가 아니면 green색상으로
                 }
             }
             const data = `userid=${idValue}`; //서버에 보낼 데이터 준비.

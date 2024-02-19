@@ -1,31 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/mypagestyle.css">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/registstyle.css">
 
 </head>
 
 <body>
-    <div class="mypage">
-        <h2>My Page</h2>
-        <form>
-            <div class="profile-image">
-                <img id="image" src="../static/images/반지1.jpg" alt="Profile image">
-                <input type="file" id="imageFile" name="imageFile">
-            </div>
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name">
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-            <input type="submit" value="Update">
+
+    <!-- 이부분안에 주석처리된것은 thymeleaf의 javascript문법이다. 
+        /*[[${message}]]*/ message에 값이 있으면 출력, 없으면 뒷 메시지 출력한다.-->
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = /*[[${message}]]*/ 'default message';
+        var error = /*[[${error}]]*/ 'default error';
+        if (message) { alert(message); }
+        if (error) { alert(error); }
+        /*]]>*/
+    </script>
+    <h1> <a href="/" style="font-size: 30px;">Project.H</a> </h1>
+    <main>
+
+        <form action="" method="POST" id="signupForm" class="bigform">
+            <form action="uploadProfileImage" method="post" enctype="multipart/form-data">
+                <div class="profile-image">
+                    <img id="image" th:src="'data:image/' + ${user.imageExtension} + ';base64,' + ${user.profileImage}"
+                        alt="Profile image">
+                    <input type="file" id="imageFile" name="imageFile">
+                    <input type="submit" value="Upload" id="uploadButton">
+                </div>
+            </form>
+            <fieldset class="name_birth">
+                <legend class="skip">정보</legend>
+                <ul>
+                    <!-- 이름 입력 창 -->
+                    <li>
+                        <label for="name">이름</label>
+                        <input type="text" th:value="${user.userName}" id="name" name=name readonly />
+                    </li>
+                    <!-- 핸드폰 번호 입력창 -->
+                    <li>
+                        <label for="phone">핸드폰 번호</label>
+                        <input type="tel" name="phone1" id="phone1"
+                            th:value="${#strings.substring(user.userPhone, 0, 3)}" style="width: 124px;" readonly> -
+                        <input type="tel" name="phone2" id="phone2"
+                            th:value="${#strings.substring(user.userPhone, 3, 7)}" style="width: 125px;" readonly> -
+                        <input type="tel" name="phone3" id="phone3" th:value="${#strings.substring(user.userPhone, 7)}"
+                            style="width: 125px;" readonly>
+                    </li>
+                    <!-- 주소입력 창 -->
+
+                </ul>
+            </fieldset>
+            <!-- 아이디 비밀번호 이메일 창 -->
+            <fieldset class="user_info">
+                <ul>
+                    <!-- 아이디 입력 창 -->
+                    <li>
+                        <label for="id" class="idlabel">사용자 아이디</label>
+                        <input type="text" id="id" class="id" th:text="${user.userId}" name="idvalue" readonly />
+                    </li>
+                    <!-- error 코드 hidden -->
+                    <li class="error id_error">6~10 자리 사이로 입력해야합니다.</li>
+
+                    <!-- 비밀번호 입력 창 -->
+                    <li>
+                        <label for="password">비밀번호 (8자리 이상)</label>
+                        <input type="password" id="password" placeholder="특수문자 & 영어 & 숫자 포함 " name="password"
+                            onblur="pw_Blur()" required />
+                    </li>
+                    <!-- error 코드 hidden -->
+                    <li class="error pw_error">특수문자 & 영어 포함 / 8자리 이상 입력해야합니다.</li>
+                    <!-- 비밀번호 확인 입력 창 -->
+                    <li>
+                        <label for="re_password">비밀번호 확인</label>
+                        <input type="password" id="re_password" name="re_password" placeholder="비밀번호 재입력"
+                            onblur="re_pw_Blur()" required />
+                    </li>
+                    <!-- error 코드 hidden -->
+                    <li class="error re_pw_error">비밀번호와 일치하지 않습니다</li>
+                    <br>
+                    <!-- 이메일 입력 창 -->
+                    <li th:with="email='${user.userEmail}', splitEmail=${#strings.arraySplit(email, '@')}">
+                        <label for="email">이메일</label>
+                        <div class="emailbox">
+                            <input type="text" name="emailId" id="emailId" class="emailId" th:value="${splitEmail[0]}"
+                                readonly>
+                            @
+                            <input class="email2" id="domain-txt" name="domain-txt" type="text"
+                                th:value="${splitEmail[1]}" readonly>
+                        </div>
+                    </li>
+                    <!-- 인증코드 입력창 -->
+
+                </ul>
+
+                <input type="submit" name="finsh" value="홈으로" onclick="checkForm()" />
+            </fieldset>
         </form>
-    </div>
+    </main>
 </body>
+
 </html>

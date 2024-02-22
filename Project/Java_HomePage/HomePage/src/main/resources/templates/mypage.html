@@ -15,25 +15,17 @@
 <body>
 
     <div class="mypage">
-
-        <!-- 이부분안에 주석처리된것은 thymeleaf의 javascript문법이다. 
-        /*[[${message}]]*/ message에 값이 있으면 출력, 없으면 뒷 메시지 출력한다.-->
-
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-
-            /*]]>*/
-        </script>
         <main>
-
             <h1>My Page</h1>
             <div>
                 <form action="uploadProfileImage" method="post" enctype="multipart/form-data" id="imgform">
                     <div class="profile-image">
                         <img id="image"
-                            th:src="${user.profileImage} != null ?
-                            'data:image/' + ${user.imageExtension} + ';base64,' + ${user.profileImage} : '/images/origin.png'"
+                            th:src="${user.profileImage} != null ? 'data:image/' + ${user.imageExtension} + ';base64,' + ${user.profileImage} : '/images/origin.png'"
                             alt="Profile image">
+                            <!-- ?이용 if문 사용. -->
+                            <!--data:image/ = 데이타가 이미지이다. ${user.imageExtension} = 확장자 , ';base64,' = 데이터가 base64로 인코딩 됨을 뜻함 ${user.profileImage} = 이미지 데이터-->
+                            <!--'/images/origin.png' = 만약 null이라면 지정한 origin.png로 나올 수 있게.-->
                         <input type="file" id="imageFile" name="imageFile">
                         <input type="hidden" name="idvalue" id="idvalue" th:value="${user.userId}">
                         <input type="submit" value="Upload" id="uploadButton">
@@ -56,11 +48,10 @@
                             th:value="${#strings.substring(user.userPhone, 0, 3)}" style="width: 124px;" readonly> -
                         <input type="tel" name="phone2" id="phone2"
                             th:value="${#strings.substring(user.userPhone, 3, 7)}" style="width: 125px;" readonly> -
-                        <input type="tel" name="phone3" id="phone3" th:value="${#strings.substring(user.userPhone, 7)}"
-                            style="width: 125px;" readonly>
+                        <input type="tel" name="phone3" id="phone3"
+                            th:value="${#strings.substring(user.userPhone, 7)}" style="width: 125px;" readonly>
                     </li>
                     <li>
-
                         <label for="id" class="idlabel">사용자 아이디</label>
                         <input type="text" id="id" class="id" th:value="${user.userId}" name="idvalue" readonly />
                     </li>
@@ -115,6 +106,8 @@
 
 
     </div>
+    <!-- 이부분안에 주석처리된것은 thymeleaf의 javascript문법이다.
+        /*[[${message}]]*/ message에 값이 있으면 출력, 없으면 뒷 메시지 출력한다.-->
     <script th:inline="javascript">
         /*<![CDATA[*/
         var message1 = /*[[${message}]]*/ 'default message';

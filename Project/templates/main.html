@@ -171,7 +171,8 @@
 
             // 지도의 우측에 확대 축소 컨트롤을 추가한다
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
+            
+            // 현 위치 정보 받아오기
             // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
             if (navigator.geolocation) {
 

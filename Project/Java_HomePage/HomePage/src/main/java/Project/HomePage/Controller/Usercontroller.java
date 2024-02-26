@@ -44,10 +44,12 @@ public class Usercontroller {
         UserDTO userDTO = userService.getUserInfo(idValue); // RequestParam으로 받은 idValue를 이용. 사용자 조회
         model.addAttribute("user", userDTO); // user라는 모델에 정보를 주입.
 
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // 암호화 할때 사용
+        String passwordValidation = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*]).{8,}$"; // ^=문자열의 시작, $=문자열의 끝
 
-
-        if (!newPw.equals(reNewPw)) { // 새 비밀번호와 확인부분이 일치하지 않으면.
+        if (!newPw.matches(passwordValidation)) {
+            redirectAttributes.addFlashAttribute("errorMessage", "비밀번호는 8자리 이상, 영어 소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.");
+            return "redirect:/mypage";
+        } else if (!newPw.equals(reNewPw)) { // 새 비밀번호와 확인부분이 일치하지 않으면.
             // errorMessage를 FlashAttribute에 지정. redirectAttributes.addFlashAttribute는 작은 양의 정보를 전달하는데 사용한다함.
             redirectAttributes.addFlashAttribute("errorMessage", "새로운 비밀번호가 일치하지 않습니다.");
             return "redirect:/mypage"; // mypage로 redirect함.

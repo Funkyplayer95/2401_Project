@@ -36,3 +36,27 @@ could not execute statement [Data truncation: Data too long for column 'profile_
 취소하기 = main으로 넘어가게끔 진행해야함.
 암호화 = 두 프레임워크 사이에서 서로다른 암호화 사용으로 해결해야함.
 마이페이지 = 비밀번호 작성 시 조건에 따라 alert창 나오게 할 수 있는 방법 해야함.
+
+
+조회 추가 저장 삭제 파일첨부 엑셀다운로드
+
+조회 버튼 누르면 db에 데이터 조회
+추가버튼 누르면 low하나 생기는것.
+컬럼헤드는 계속 유지할것.
+저장을누르면 db에 저장하고 low표현할수잇게
+low 앞에 체크박스넣어서 삭제를누르면 데이터베이스에서 삭제되도록 (화면에서도)
+다운로드하면 엑셀로 다운로드
+파일첨부 해서 엑셀파일을 선택하면 
+
+머지문 써보기 키가데이터가 있으면 update되고 없으면 
+
+
+파일 첨부 누를 때, db에서 가져오는거 
+
+
+추가버튼 클릭 시, checkbox checked적용. 못건들게 readonly, 키값 마지막 +1
+여러개 추가해서 checked가 되면 여러개 추가할 수 있도록 수정.
+
+
+Simple Mail Transfer Protocol = SMTP
+Application Programming Interface = API

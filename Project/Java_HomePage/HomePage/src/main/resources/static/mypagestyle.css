@@ -52,12 +52,6 @@ li {
     margin-bottom: 20px;
 }
 
-/* Id CSS */
-
-.id {
-    width: 250px;
-}
-
 /* email css */
 .emailbox {
     display: flex;
@@ -67,7 +61,7 @@ li {
 }
 
 .emailId {
-    width: 25%;
+    width: 195px;
 }
 
 .box #domain-list option {
@@ -86,7 +80,7 @@ li {
 
 /* submit css */
 input[type="submit"], input[type="button"] {
-    width: 400px;
+    width: 192px;
     margin-top: 20px;
     background-color: black;
     color: white;

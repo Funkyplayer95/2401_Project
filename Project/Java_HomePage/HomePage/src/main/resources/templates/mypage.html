@@ -26,9 +26,11 @@
                         <!-- ?이용 if문 사용. -->
                         <!--data:image/ = 데이타가 이미지이다. ${user.imageExtension} = 확장자 , ';base64,' = 데이터가 base64로 인코딩 됨을 뜻함 ${user.profileImage} = 이미지 데이터-->
                         <!--'/images/origin.png' = 만약 null이라면 지정한 origin.png로 나올 수 있게.-->
-                        <input type="file" id="imageFile" name="imageFile">
-                        <input type="hidden" name="idvalue" id="idvalue" th:value="${user.userId}">
-                        <input type="submit" value="Upload" id="uploadButton">
+                        <div style="height: 37px;">
+                            <input type="file" id="imageFile" name="imageFile" style=" width: 285px;">
+                            <input type="submit" value="Upload" id="uploadButton" style="width: 100px; height: 37px; margin: 0; line-height: 22px; margin-left: 10px;">
+                            <input type="hidden" name="idvalue" id="idvalue" th:value="${user.userId}">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -62,7 +64,7 @@
                                 readonly>
                             @
                             <label for="emailDomain"></label>
-                            <input class="email2" id="emailDomain" name="emailDomain" type="text"
+                            <input class="email2" id="emailDomain" name="emailDomain" type="text" style="width: 195px;"
                                 th:value="${emailSplit[1]}" readonly>
                         </div>
                     </li>
@@ -77,7 +79,7 @@
                         <ul>
                             <input type="hidden" name="idvalue2" id="idvalue2" th:value="${user.userId}">
                             <li>
-                                <label for="newPw">비밀번호 (8자리 이상)</label>
+                                <label for="newPw">비밀번호 수정(8자리 이상)</label>
                                 <input type="password" id="newPw" placeholder="특수문자 & 영어 & 숫자 포함 " name="newPw"
                                     onblur="pw_Blur()" />
                             </li>
@@ -92,16 +94,12 @@
                             <!-- error 코드 hidden -->
                             <li class="error re_pw_error">비밀번호와 일치하지 않습니다</li>
                         </ul>
-                        <input type="submit" name="change" id="change" value="수정하기" />
+                        <input type="submit" name="change" id="change" value="수정" />
+                        <input type="button" name="cancel" value="취소" style="margin-left: 10px;background: white;color: black;border: 1px solid;" id="cancelButton" />
                     </form>
                 </div>
 
             </fieldset>
-
-
-            <form>
-                <input type="button" name="cancel" value="취소하기" id="cancelButton" />
-            </form>
         </main>
 
 

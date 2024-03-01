@@ -21,7 +21,7 @@
                 <ul>
                     <!-- 이름 입력 창 -->
                     <li>
-                        <label for="name">이름</label>
+                        <label for="name">이름 *</label>
                         <input type="text" placeholder="이름" id="name" name=name autocomplete="on" required />
                     </li>
                     <!-- 성별 선택 radio button -->
@@ -30,25 +30,26 @@
                             <input type="radio" id="genderBtnM" name="gender" value="M" required>
                             <span>남자</span>
                         </label>
-                        <label class="genderBtn">
+                        <label class="genderBtn" style="margin-left: 10px;">
                             <input type="radio" id="genderBtnW" name="gender" value="W">
                             <span>여자</span>
                         </label>
                     </div>
                     <!-- 주민등록번호 입력 창 -->
                     <li>
-                        <label for="joomin1">주민등록번호</label>
+                        <label for="joomin1">주민등록번호 *</label>
                         <span><input type="text" name="joomin1" class="joomin1" id="joomin1" maxlength="6"
                                 placeholder="앞 6자리" oninput="inputNum1(this.value)" required> </span>
                         -
                         <span class="joomin2span"><input type="text" name="joomin2" class="joomin2" id="joomin2"
-                                maxlength="1" oninput="inputNum2(this.id)" onblur="joomin2_Blur();" required>* * * * *
-                            *</span>
+                                maxlength="1" oninput="inputNum2(this.id)" onblur="joomin2_Blur();" required>
+                                <span style=" font-size: 22px; display: inline-block; height: 37px; ">* * * * * *</span>
+                        </span>
                     </li>
                     <li class="error joomin_error">주민등록번호와 성별이 일치하지 않습니다.</li>
                     <!-- 핸드폰 번호 입력창 -->
                     <li>
-                        <label for="phone1">핸드폰 번호</label>
+                        <label for="phone1">핸드폰 번호 *</label>
                         <input type="tel" name="phone1" id="phone1" maxlength="3" oninput="inputNum3(this.id)"
                             style="width: 124px;" autocomplete="off" required> -
                         <input type="tel" name="phone2" id="phone2" maxlength="4" oninput="inputNum3(this.id)"
@@ -81,7 +82,7 @@
                 <ul>
                     <!-- 아이디 입력 창 -->
                     <li>
-                        <label for="id" class="idlabel">아이디 (6~10자리)</label>
+                        <label for="id" class="idlabel">아이디 * (6~10자리)</label>
                         <input type="text" id="id" class="id" placeholder="6~10자리 입력해주세요" name=userid onblur="id_Blur()"
                             oninput="english_number_id()" required />
                         <input type="button" id="check_button" value="ID 중복 검사" class="checkid"
@@ -94,7 +95,7 @@
 
                     <!-- 비밀번호 입력 창 -->
                     <li>
-                        <label for="password">비밀번호 (8자리 이상)</label>
+                        <label for="password">비밀번호 * (8자리 이상)</label>
                         <input type="password" id="password" placeholder="특수문자 & 영어 & 숫자 포함 " name="password"
                             onblur="pw_Blur()" required />
                     </li>
@@ -102,7 +103,7 @@
                     <li class="error pw_error">특수문자 & 영어 포함 / 8자리 이상 입력해야합니다.</li>
                     <!-- 비밀번호 확인 입력 창 -->
                     <li>
-                        <label for="re_password">비밀번호 확인</label>
+                        <label for="re_password">비밀번호 확인 *</label>
                         <input type="password" id="re_password" name="re_password" placeholder="비밀번호 재입력"
                             onblur="re_pw_Blur()" required />
                     </li>
@@ -112,15 +113,15 @@
                     <!-- 이메일 입력 창 -->
                     <li>
                         <form action="method" id="emailForm">
-                            <label for="domain-txt">이메일</label>
+                            <label for="domain-txt">이메일 *</label>
                             <div class="emailbox">
                                 <input type="text" name="emailId" id="emailId" class="emailId" value="">
-                                @
+                                <span style="font-size: 14px;display: inline-block;width: 10px;margin-left: -3px;">@</span>
                                 <input class="email2" id="domain-txt" name="domain-txt" type="text" value="">
                                 <select class="box" id="domain-list" name="domain-list">
                                     <option value="type">직접 입력</option>
                                     <option value="naver.com">naver.com</option>
-                                    <option value="google.com">google.com</option>
+                                    <option value="gmail.com">gmail.com</option>
                                     <option value="hanmail.net">hanmail.net</option>
                                     <option value="nate.com">nate.com</option>
                                     <option value="kakao.com">kakao.com</option>
@@ -134,7 +135,7 @@
                     <!-- 인증코드 입력창 -->
                     <li style="margin-top: 5px;">
                         <form action="method" id="verificationForm">
-                            <input type="text" name="code" id="code" style="width: 250px;" placeholder="인증번호를 입력해주세요">
+                            <input type="text" name="code" id="code" style="width: 285px;" placeholder="인증번호를 입력해주세요">
                             <input type="button" class="checkid" onclick="verifyCode()" value="인증 확인"></button>
                         </form>
                     </li>
@@ -302,7 +303,7 @@
                     var popup = window.open("", "Popup", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top); // 팝업창 띄우기
 
                     // 안에 들어가는 내용작성. 확인을 누를 시 페이지가 넘어가도록 설정
-                    popup.document.write("<h3>" + response.message + "</h3><button onclick='window.close(); window.opener.location.href=\"/\";'>확인</button>");
+                    popup.document.write("<h3 style='text-align: center; margin: 50px 0px 30px 0px;'>" + response.message + "</h3><div style='text-align: center;'><button style='width: 100px; height: 30px; padding: 0; cursor: pointer; background: black; color: white; box-shadow: 0 3px 3px rgb(54, 18, 87); border: 0;' onclick='window.close(); window.opener.location.href=\"/\";'>확인</button></div>");
                 }
             });
         });

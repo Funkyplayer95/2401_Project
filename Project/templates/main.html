@@ -45,18 +45,41 @@
 
                 <div class="col-4 pt-1">
                     {% if user.is_authenticated or user_id %} <!-- 로그인이 되어있는 상태라면 -->
-                    <form action="http://localhost:8001/mypage" method="post">
-                        <input type="hidden" name="idvalue" id="idvalue" value="{{user_id}}">
-                        <button type="submit" class="btn btn-primary" style="background: blueviolet; border: none;">My
-                            Page</button>
-                    </form>
-                    <script>
-                        localStorage.setItem('idvalue', '{{ idvalue }}');
+                    
+                        {% if user_id == "master" %}
+                        <div>
+                            <form action="http://localhost:8001/mypage" method="post" style="display: inline-block;">
+                                <input type="hidden" name="idvalue" id="idvalue" value="{{user_id}}">
+                                <button type="submit" class="btn btn-primary" style="background: black; border: none;">My
+                                    Page</button>
+                            </form>
+                            
+                            <script>
+                                localStorage.setItem('idvalue', '{{ idvalue }}');
 
-                        document.getElementById('idvalue').addEventListener('click', function () {
-                            window.location.href = 'http://localhost:8001/mypage?idvalue=' + localStorage.getItem('idvalue');
-                        });
-                    </script>
+                                document.getElementById('idvalue').addEventListener('click', function () {
+                                    window.location.href = 'http://localhost:8001/mypage?idvalue=' + localStorage.getItem('idvalue');
+                                });
+                            </script>
+                            <form action="http://localhost:8008/" method="post" style="display: inline-block; margin-left: 20px;">
+                                <button type="submit" class="btn btn-primary" style="background: black; border: none;">Product List</button>
+                            </form>
+                        </div>
+                        {% else %} 
+                        <form action="http://localhost:8001/mypage" method="post">
+                            <input type="hidden" name="idvalue" id="idvalue" value="{{user_id}}">
+                            <button type="submit" class="btn btn-primary" style="background: black; border: none;">My
+                                Page</button>
+                        </form>
+                        
+                        <script>
+                            localStorage.setItem('idvalue', '{{ idvalue }}');
+
+                            document.getElementById('idvalue').addEventListener('click', function () {
+                                window.location.href = 'http://localhost:8001/mypage?idvalue=' + localStorage.getItem('idvalue');
+                            });
+                        </script>
+                        {% endif %} <!-- if문 끝날때 사용 -->
                     {% else %} <!-- 그렇지 않을경우 비운다. -->
 
                     {% endif %} <!-- if문 끝날때 사용 -->
@@ -72,28 +95,29 @@
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ request.path }}">
-                        <button type="submit" class="btn btn-primary" style="background: blueviolet;
+                        <button type="submit" class="btn btn-primary" style="background: black;
                         border: none;">Logout</button>
                     </form>
                     {% else %}
-                    <a class="btn btn-primary" style="background: blueviolet;
+                    <a class="btn btn-primary" style="background: black;
                     border: none;" href="regist/">Sign Up</a>
 
                     <!-- data-bs-target 은 modal을 불러오는 코드이다. -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" id="myModal" style="background: blueviolet;
+                        data-bs-target="#staticBackdrop" id="myModal" style="background: black;
                         border: none; margin-left: 20px;">
                         Login
                     </button>
 
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog" style="margin-top: 180px;">
                             <div class="modal-content" style="width: 400px; height: 370px;">
-                                <div class="modal-header" style="background: blueviolet; color: white;">
+                                <div class="modal-header" style="background: black; color: white;">
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                        aria-label="Close"
+                                        style="filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(108deg) brightness(103%) contrast(107%);"></button>
                                 </div>
                                 <form action="/login/" method="post">
                                     {% csrf_token %}
@@ -102,12 +126,12 @@
                                         <ul>
                                             <!-- 아이디 입력 창 -->
                                             <li>
-                                                <label for="loginid" style="color: blueviolet;">아이디</label><br>
+                                                <label for="loginid" style="color: black;">아이디</label><br>
                                                 <input type="text" name="loginid" id="loginid" style="width: 200px;">
                                             </li>
                                             <!-- 비밀번호 입력 창 -->
                                             <li style="margin-top: 10px;">
-                                                <label for="loginpw" style="color: blueviolet;">비밀번호</label><br>
+                                                <label for="loginpw" style="color: black;">비밀번호</label><br>
                                                 <input type="password" name="loginpw" id="loginpw"
                                                     style="width: 200px;">
                                             </li>
@@ -125,7 +149,7 @@
                                         <a class="btn btn-secondary" style="
                                             border: none; float: right;" href="regist/">회원가입</a>
                                         <input type="submit" class="btn btn-primary"
-                                            style="background: blueviolet; border:none;" value="로그인">
+                                            style="background: black; border:none;" value="로그인">
                                     </div>
                             </div>
                         </div>
@@ -259,7 +283,7 @@
                         옵션 :
                         <form method="post">
                             {% csrf_token %}
-                            <select class="box" id="size-list1" style="margin-top: 15px; width: 100px;" name="size">
+                            <select class="box" id="size-list1" style="margin-top: 15px; width: 150px;" name="size">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
@@ -270,7 +294,7 @@
                             {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
-                                background-color: blueviolet; border: none; width: 150px; height: 50px;">
+                                background-color: black; border: none; width: 150px; height: 50px;">
                             {% else %}
                             <br>
                             <p>로그인 후 구매 가능합니다.</p>
@@ -316,7 +340,7 @@
                         옵션 :
                         <form method="post">
                             {% csrf_token %}
-                            <select class="box" id="size-list2" style="margin-top: 15px; width: 100px;" name="size">
+                            <select class="box" id="size-list2" style="margin-top: 15px; width: 150px;" name="size">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
@@ -327,7 +351,7 @@
                             {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
-                                background-color: blueviolet; border: none; width: 150px; height: 50px;">
+                                background-color: black; border: none; width: 150px; height: 50px;">
                             {% else %}
                             <br>
                             <p>로그인 후 구매 가능합니다.</p>
@@ -371,7 +395,7 @@
                         옵션 :
                         <form method="post">
                             {% csrf_token %}
-                            <select class="box" id="size-list3" style="margin-top: 15px; width: 100px;" name="size">
+                            <select class="box" id="size-list3" style="margin-top: 15px; width: 150px;" name="size">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
@@ -380,7 +404,7 @@
                             {% if user.is_authenticated or user_id %}
                             <br>
                             <input type="submit" value="구매하기" style="border-radius: 8px; color: white;
-                                background-color: blueviolet; border: none; width: 150px; height: 50px;">
+                                background-color: black; border: none; width: 150px; height: 50px;">
                             {% else %}
                             <br>
                             <p>로그인 후 구매 가능합니다.</p>
@@ -426,7 +450,7 @@
 
             <!-- openweathermap api 사용 -->
             <aside class="col-md-4 blog-sidebar">
-                <h3 class="rounded" style="text-align: center; color: blueviolet; font-weight: bolder;"> -Today's
+                <h3 class="rounded" style="text-align: center; color: black; font-weight: bolder;"> -Today's
                     Weather- </h3>
                 <div class="p-4 mb-3 bg-black rounded" style="display: flex;">
                     {% for weather in weather_data %}

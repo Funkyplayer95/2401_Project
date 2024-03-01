@@ -35,7 +35,7 @@ public class UserService {
         userDTO.setUserEmail(user.getUser_email()); // DTO에 user_email를 set한다
         userDTO.setUserPhone(user.getUser_phone()); // DTO에 user_phone를 set한다
         userDTO.setProfileImage(user.getProfile_image()); // DTO에 user_profile_image를 set한다
-        userDTO.setImageExtension(getExtension(user.getProfile_image())); // DTO에 user_id를 set한다
+        userDTO.setImageExtension(user.getImageExtension());
         // getExtension 메소드는 파일의 확장자를 추출해서 반환하는 메서드이다.
 
         return userDTO; // set된 userDTO를 반환
@@ -58,12 +58,12 @@ public class UserService {
         try{
             User user = userRepository.findById(id).orElseThrow(); // 아이디를 통해 사용자 찾기.
             String filename = file.getOriginalFilename(); //업로드된 파일의 이름을 가져온다.
-            List<String> allowedExtensions = Arrays.asList("img", "jpg", "png"); // 업로드 허용할 확장자를 리스트로 정의.
+            List<String> allowedExtensions = Arrays.asList("img", "jpg", "png", "jpeg"); // 업로드 허용할 확장자를 리스트로 정의.
 
             //파일 이름에서 확장자 부분을 추출. requireNonNull는 obj가 null이면 nullpointerror를 발생해주는 메서드.
             String extension = Objects.requireNonNull(filename).substring(filename.lastIndexOf(".") + 1);
             if (!allowedExtensions.contains(extension)) { // 업로드된 파일의 확장자가 allowedExtensions 값이 아니라면
-                throw new RuntimeException("img, jpg, png 파일만 업로드가능합니다."); // runtimeexception을 던진다.
+                throw new RuntimeException("img, jpg, png, jpeg 파일만 업로드가능합니다."); // runtimeexception을 던진다.
             }
 
             // 이미지 데이터를 Base64로 인코딩
@@ -79,18 +79,18 @@ public class UserService {
     }
 
     //확장자를 저장하는 함수
-    public String getExtension(String filename) {
-        String extension = ""; // 확장자를 저장할 문자열을 선언. 초기화.
-        if (filename != null) { // filename이 null이 아니면
-            Path path = Paths.get(filename); // Paths.get 메서드를 이용해 파일이름을 경로로 변환.
-            if (path.getFileName().toString().contains(".")) { // 파일 이름에 "."이 포함돼 있는지 확인. "."이 있다면 확장자가 존재한다 판단
-                extension = path.getFileName().toString().substring(path.getFileName().toString().lastIndexOf(".") + 1);
-                // path.getFileName().toString().lastIndexOf(".") + 1를 통해 마지막"."의 위치를 찾고, 그 뒤의 문자열을 substring을 통해 추출한다.
-                // 추출한것을 extension에 저장한다.
-            }
-        }
-        return extension; //저장한 extension을 반환한다.
-    }
+//    public String getExtension(String filename) {
+//        String extension = ""; // 확장자를 저장할 문자열을 선언. 초기화.
+//        if (filename != null) { // filename이 null이 아니면
+//            Path path = Paths.get(filename); // Paths.get 메서드를 이용해 파일이름을 경로로 변환.
+//            if (path.getFileName().toString().contains(".")) { // 파일 이름에 "."이 포함돼 있는지 확인. "."이 있다면 확장자가 존재한다 판단
+//                extension = path.getFileName().toString().substring(path.getFileName().toString().lastIndexOf(".") + 1);
+//                // path.getFileName().toString().lastIndexOf(".") + 1를 통해 마지막"."의 위치를 찾고, 그 뒤의 문자열을 substring을 통해 추출한다.
+//                // 추출한것을 extension에 저장한다.
+//            }
+//        }
+//        return extension; //저장한 extension을 반환한다.
+//    }
 
 }
 

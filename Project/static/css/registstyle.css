@@ -46,13 +46,13 @@ li {
 }
 
 .address_num {
-    width: 200px;
+    width: 285px;
 }
 
 .address_Btn {
     width: 100px;
     height: 30px;
-    margin-left: 50px;
+    margin-left: 10px;
     padding: 0;
     background: black;
     color: white;
@@ -75,7 +75,7 @@ li {
 }
 
 .genderBtn {
-    width: 200px;
+    width: 195px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -87,7 +87,8 @@ li {
 .genderBtn input[type="radio"]+span {
     display: block;
     padding: 10px 5px;
-    border: 1px solid rgb(201, 201, 201);
+    border: 1px solid darkgray;
+    border-radius: 4px;
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
@@ -101,14 +102,14 @@ li {
 /* Id CSS */
 
 .id {
-    width: 250px;
+    width: 285px;
 }
 
 .checkid {
-    width: 85px;
+    width: 100px;
     height: 30px;
     margin-top: 3px;
-    margin-left: 61px;
+    margin-left: 10px;
     padding: 0;
     cursor: pointer;
     background: black;
@@ -130,43 +131,42 @@ li {
 }
 
 .joomin2 {
-    width: 10%
+    width: 38px;
 }
 
 .joomin2span {
-    font-size: 30px;
+    display: inline-block;
+    width: 180px;
+    height: 37px;
 }
 
 /* email css */
 .emailbox {
-    display: flex;
-    justify-content: center;
+    display: inline-block;
     text-align: center;
-    align-items: center;
 }
 
 .emailId {
-    width: 25%;
+    width: 90px;
 }
 
 #domain-txt {
-    width: 25%;
+    width: 89px;
 }
 
 select.box {
-    margin-left: 5px;
-    width: 100px;
+    width: 89px;
     height: 37px;
     box-sizing: border-box;
-    padding: 5px 0 5px 10px;
     border-radius: 4px;
     border: 1px solid #d9d6d6;
     color: #383838;
     background-color: #ffffff;
+    font-size: 12px;
 }
 
 option {
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .box #domain-list option {
@@ -174,9 +174,9 @@ option {
     background-color: #ffffff;
 }
 .checkemail{
-    width: 90px;
+    width: 100px;
     height: 30px;
-    margin-left: 3px;
+    margin-left: 10px;
     margin-bottom: 5px;
     padding: 0;
     cursor: pointer;

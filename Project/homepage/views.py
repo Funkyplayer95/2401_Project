@@ -45,14 +45,12 @@ def main(request):
         else:
             # 콘솔에 어느 도시의 정보를 불러오는게 실패하는지 확인하기
             print(f"{city_name}의 날씨 정보를 불러오는데 실패했습니다.")
-    
-    # 로그인된 사용자의 아이디를 가져온다.
-    user_id = request.session.get("user_id")
 
-    # 날씨 api 와 카카오지도 api키를 가져와서 context안에 저장시킴.
-    context = {'weather_data' : weather_data , 'kakaoapi' : kakaoapi, "user_id": user_id, 'idvalue': request.session.get('user_id')} # context안에 작성하면 html에서 {{ }} 로 불러올 수 있음
-    print(request.session.get("user_id")) # 저장되어 있는 session의 user_id를 출력해본다.
     
+    # context = {'weather_data' : weather_data , 'kakaoapi' : kakaoapi, "user_id": user_id, 'idvalue': request.session.get('user_id')} # context안에 작성하면 html에서 {{ }} 로 불러올 수 있음
+            
+    # 날씨 api 와 카카오지도 api키, user_id, idvalue을 가져와서 context안에 저장시킴.
+    context = {'weather_data' : weather_data , 'kakaoapi' : kakaoapi, 'idvalue': request.session.get('user_id')} # context안에 작성하면 html에서 {{ }} 로 불러올 수 있음
 
     return render(request, 'main.html', context) 
 #################################################################################

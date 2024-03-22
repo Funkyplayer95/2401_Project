@@ -44,13 +44,6 @@ class Cityweather(models.Model):
         db_table = 'cityweather'
     def _str_(self): #메인에 DB에 저장되어있는 이름이 표시되도록 함
         return self.name
-    
-
-# class Userimg(models.Model):
-    
-
-    # def __str__(self):
-    #     return self.user_id
 
 # inspectdb 사용해서 db조회할 것
 # IntegerField 는 max_length를 할 필요가 없다고 한다.
